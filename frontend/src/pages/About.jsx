@@ -137,7 +137,7 @@ const About = () => {
             and gradually built a team of developers who shared the same belief —
             that technology can actually make a difference.
           </p>
-          <p className="ab-founder-signature">Naresh</p>
+          <p className="ab-founder-signature">Naresh Dharmaraj</p>
           <p className="ab-founder-role">Founder &amp; Developer</p>
         </div>
 

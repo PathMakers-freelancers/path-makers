@@ -167,8 +167,8 @@ const faqData = [
   { question: "Do you provide hosting and domain?", answer: "Yes, we handle the entire deployment pipeline, including domain registration, SSL certificates, and scalable cloud hosting on AWS, GCP, or Vercel." },
   { question: "What about maintenance and support?", answer: "We provide comprehensive post-launch support and maintenance packages. This includes bug fixes, security patches, server monitoring, and feature upgrades." },
   { question: "Can I get a product subscription or lifetime access?", answer: "Depending on the software, we offer both flexible monthly/yearly SaaS subscriptions as well as one-time lifetime enterprise licensing." },
-  { question: "Will I own the source code?", answer: "Absolutely. Upon full payment and project completion for custom software, all intellectual property rights and source code are fully transferred to you." },
-  { question: "How do you handle my data and security?", answer: "Security is our top priority. We implement industry-standard encryption, secure JWT authentication, daily backups, and strictly adhere to data privacy laws." }
+  { question: "Will I own the source code?", answer: "PathMakers products are proprietary software. Purchasing a subscription or lifetime access provides the agreed usage rights for the selected product and configuration. The underlying source code, architecture and developer rights remain with PathMakers Technologies." },
+  { question: "How do you handle my data and security?", answer: "Security is our top priority. We implement industry-standard encryption, secure JWT authentication, and strictly adhere to data privacy laws." }
 ];
 
 const Home = () => {
@@ -496,12 +496,12 @@ const Home = () => {
                 {['All', 'Education'].includes(activeFilter) && (
                   <div className="product-card">
                     <div className="product-image">
-                      <img src={featherLmsImg} alt="Awareness Academy" />
+                      <img src={featherLmsImg} alt="FeatherLMS" />
                     </div>
                     <div className="product-content">
                       <div className="product-title-row">
                         <span className="product-icon">🎓</span>
-                        <h3>Awareness Academy</h3>
+                        <h3>FeatherLMS</h3>
                       </div>
                       <p className="product-subtitle">Learning Management System (LMS)</p>
                       <p className="product-desc">Host courses, manage students, give certificates and more.</p>
@@ -523,7 +523,7 @@ const Home = () => {
                     <div className="product-content">
                       <div className="product-title-row">
                         <span className="product-icon">🛡️</span>
-                        <h3>Twinsure</h3>
+                        <h3>Insurance CRM</h3>
                       </div>
                       <p className="product-subtitle">Insurance Support Platform</p>
                       <p className="product-desc">Manage policies, clients and support requests with ease.</p>
@@ -545,7 +545,7 @@ const Home = () => {
                     <div className="product-content">
                       <div className="product-title-row">
                         <span className="product-icon">🏫</span>
-                        <h3>School ERP</h3>
+                        <h3>Vidhai - School ERP</h3>
                       </div>
                       <p className="product-subtitle">Complete School Management</p>
                       <p className="product-desc">From admissions to results — all in one place.</p>

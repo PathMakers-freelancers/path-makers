@@ -35,7 +35,7 @@ const Footer = () => {
                 <span className="c-icon">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D13B6B" strokeWidth="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </span>
-                <p>Pathmakers Technologies FREELANCERS,<br/>P.Velur, Tamil Nadu, India</p>
+                <p>Pathmakers Technologies Freelancers,<br/>P.Velur, Tamil Nadu, India</p>
               </div>
               <div className="contact-item">
                 <span className="c-icon">
