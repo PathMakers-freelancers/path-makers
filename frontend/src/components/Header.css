@@ -1,0 +1,168 @@
+.header {
+  height: var(--header-height);
+  border-bottom: 1px solid var(--border-light);
+  background: rgba(250, 249, 246, 0.8);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header.scrolled {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1000px;
+  background: transparent;
+  border-radius: 100px;
+  border: none;
+  height: 55px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  position: fixed;
+}
+
+/* Smooth Gold Rim Glow */
+.header.scrolled::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(90deg, 
+    rgba(250, 204, 21, 0.1) 0%, 
+    rgba(212, 175, 55, 1) 25%, 
+    rgba(250, 204, 21, 0.1) 50%, 
+    rgba(212, 175, 55, 1) 75%, 
+    rgba(250, 204, 21, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 100px;
+  z-index: -2;
+  animation: shineGlow 4s linear infinite;
+  filter: blur(5px);
+  opacity: 0.9;
+}
+
+@keyframes shineGlow {
+  0% { background-position: 200% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Solid background inside the glowing border */
+.header.scrolled::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #080C16;
+  border-radius: 100px;
+  z-index: -1;
+}
+
+.header.scrolled .header-inner {
+  padding: 0 24px;
+}
+
+.header.scrolled .header-logo-img {
+  filter: brightness(0) invert(1);
+  height: 40px;
+}
+
+.header.scrolled .logo-text strong,
+.header.scrolled .logo-text span {
+  color: #fff;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 12px;
+}
+
+.header-logo-img {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  transition: all 0.3s;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-text strong {
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  transition: color 0.3s;
+}
+
+.logo-text span {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  transition: color 0.3s;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  color: #c4923e;
+  font-weight: 700;
+}
+
+.header.scrolled .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.header.scrolled .nav-link:hover {
+  color: #fff;
+}
+
+.header.scrolled .nav-link.active {
+  color: #facc15;
+}
+
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .btn-primary.btn-sm {
+  background-color: #fff;
+  color: #111;
+  border-radius: 50px;
+}
+
+.header.scrolled .btn-primary.btn-sm:hover {
+  background-color: #f0f0f0;
+}
