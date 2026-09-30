@@ -200,6 +200,13 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    document.documentElement.style.scrollSnapType = 'y mandatory';
+    return () => {
+      document.documentElement.style.scrollSnapType = '';
+    };
+  }, []);
+
   return (
     <main>
         {/* HERO SECTION */}
@@ -215,7 +222,7 @@ const Home = () => {
                 <h1 className="hero-title">
                   PATHMAKERS<br />
                   <span className="gold-text">TECHNOLOGIES</span><br />
-                  <span className="light-text">PRIVATE LIMITED</span>
+                  <span className="light-text">FREELANCERS</span>
                 </h1>
                 <p className="hero-subtitle">
                   We don't just build <strong>software</strong>.<br />

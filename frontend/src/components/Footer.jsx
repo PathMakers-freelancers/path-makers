@@ -14,7 +14,7 @@ const Footer = () => {
 
       <div className="container footer-content-wrapper">
         <div className="footer-top-action">
-          <a href="#book-call" className="btn-book-call">Book a call</a>
+          <a href="https://wa.me/917200754566?text=Hello%20PathMakers%20and%20Team%2C%20I%20would%20like%20to%20Connect%20for%20a%20projects%20discussion." target="_blank" rel="noopener noreferrer" className="btn-book-call">Book a call</a>
         </div>
 
         <div className="footer-container">
@@ -24,7 +24,7 @@ const Footer = () => {
               <img src={pmLogoImg} alt="Pathmakers Logo" className="footer-logo-img" />
               <div className="footer-logo-text">
                 <strong>PATHMAKERS</strong>
-                <span>TECHNOLOGIES PRIVATE LIMITED</span>
+                <span>TECHNOLOGIES FREELANCERS</span>
               </div>
             </div>
             <p className="company-desc">
@@ -35,7 +35,7 @@ const Footer = () => {
                 <span className="c-icon">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D13B6B" strokeWidth="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </span>
-                <p>Pathmakers Technologies Private Limited,<br/>Tech Park, Innovation Hub, India</p>
+                <p>Pathmakers Technologies FREELANCERS,<br/>P.Velur, Tamil Nadu, India</p>
               </div>
               <div className="contact-item">
                 <span className="c-icon">
@@ -114,14 +114,14 @@ const Footer = () => {
       
       <div className="container footer-bottom">
         <div className="copyright">
-          &copy; 2026 Pathmakers Technologies Private Limited. All rights reserved.
+          &copy; 2026 Pathmakers Technologies Freelancers. All rights reserved.
         </div>
         <div className="footer-bottom-right">
           <div className="footer-links">
             <a href="#privacy">Privacy Policy</a>
             <a href="#terms">Terms of Service</a>
           </div>
-          <div className="footer-location">Dubai, UAE</div>
+          <div className="footer-location">P.Velur, Tamil Nadu, India</div>
         </div>
       </div>
     </footer>

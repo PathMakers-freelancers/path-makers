@@ -34,7 +34,7 @@ const Header = () => {
           <img src={pmLogo} alt="Pathmakers Technologies" className="header-logo-img" />
           <div className="logo-text">
             <strong>PATHMAKERS</strong>
-            <span>TECHNOLOGIES PRIVATE LIMITED</span>
+            <span>TECHNOLOGIES FREELANCERS</span>
           </div>
         </Link>
         <nav className="desktop-nav">

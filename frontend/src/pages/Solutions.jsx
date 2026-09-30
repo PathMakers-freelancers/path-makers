@@ -95,21 +95,7 @@ const Solutions = () => {
         }
       }
 
-      // Auto-snap scroll effect (Bottom boundary)
-      const bottom = top + height;
-      if (bottom > 0 && bottom < windowHeight && !isAutoScrollingRef.current) {
-        if (isScrollingDown && bottom < windowHeight * 0.9) {
-          // Scrolled down out of it 10%. Snap OUT (bottom -> 0)
-          isAutoScrollingRef.current = true;
-          window.scrollTo({ top: currentScrollY + bottom, behavior: 'smooth' });
-          setTimeout(() => { isAutoScrollingRef.current = false; }, 1000);
-        } else if (!isScrollingDown && bottom > windowHeight * 0.1) {
-          // Scrolled up into it 10%. Snap IN (bottom -> windowHeight)
-          isAutoScrollingRef.current = true;
-          window.scrollTo({ top: currentScrollY - (windowHeight - bottom), behavior: 'smooth' });
-          setTimeout(() => { isAutoScrollingRef.current = false; }, 1000);
-        }
-      }
+      // Auto-snap scroll effect (Bottom boundary) removed to allow normal scrolling to the CTA and footer.
 
       // Calculate progress when section is pinned
       if (top <= 0 && top > -height + windowHeight) {
@@ -622,7 +608,7 @@ const Solutions = () => {
 
       {/* 09 - Architecture Layers */}
       {/* 09 - Architecture Layers */}
-      <section style={{ position: 'relative', width: '100%', padding: '70px 0', backgroundColor: '#FDFBF7', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid rgba(212,175,55,0.1)', overflow: 'hidden' }}>
+      <section style={{ position: 'relative', width: '100%', padding: '30px 0', backgroundColor: '#FDFBF7', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid rgba(212,175,55,0.1)', overflow: 'hidden' }}>
         
         {/* Background Centered Image with Radial Fade */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', maxWidth: '600px', height: '85%', zIndex: 1, pointerEvents: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -640,15 +626,15 @@ const Solutions = () => {
           <div style={{ flex: '1', maxWidth: '420px' }}>
             <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.15em', color: '#9CA3AF', textTransform: 'uppercase', marginBottom: '8px' }}>OUR APPROACH</div>
             <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#111827', marginBottom: '0', lineHeight: '1.1' }}>WHAT WILL WE ACTUALLY</h2>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#B98031', marginBottom: '15px', lineHeight: '1.1' }}>GIVE YOU?</h2>
-            <div style={{ width: '40px', height: '3px', background: '#B98031', marginBottom: '25px' }}></div>
-            <p style={{ fontSize: '0.85rem', color: '#4B5563', lineHeight: '1.6', marginBottom: '35px' }}>
+            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#B98031', marginBottom: '10px', lineHeight: '1.1' }}>GIVE YOU?</h2>
+            <div style={{ width: '40px', height: '3px', background: '#B98031', marginBottom: '15px' }}></div>
+            <p style={{ fontSize: '0.85rem', color: '#4B5563', lineHeight: '1.6', marginBottom: '20px' }}>
               A software project is more than screens and code.<br/>
               The solution has to work for the people, process and<br/>
               business behind it.
             </p>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
                 { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>, text: 'Complete solution' },
                 { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>, text: 'Transparent process' },
@@ -666,7 +652,7 @@ const Solutions = () => {
           </div>
 
           {/* Right Column */}
-          <div style={{ flex: '1', maxWidth: '320px', display: 'flex', flexDirection: 'column', gap: '25px' }}>
+          <div style={{ flex: '1', maxWidth: '320px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
             {[
               { icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>, title: 'Business Layer', points: ['Requirements', 'Workflow mapping', 'User roles', 'Process definition'] },
               { icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>, title: 'Experience Layer', points: ['UI/UX', 'Responsive interfaces', 'Dashboards', 'Mobile experience'] },
@@ -748,7 +734,7 @@ const Solutions = () => {
       </section>
 
       {/* 11 - Decision Flow */}
-      <section style={{ backgroundColor: '#FDFBF7', padding: '40px 40px', overflow: 'hidden' }}>
+      <section style={{ backgroundColor: '#FDFBF7', padding: '20px 40px', overflow: 'hidden' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', maxWidth: '1450px', margin: '0 auto', gap: '40px' }}>
           
           {/* Left Side: Text and Button */}
