@@ -44,6 +44,7 @@ const Solutions = () => {
   const lastScrollYRef = useRef(0);
   const [activeInvestmentWedge, setActiveInvestmentWedge] = useState(5);
   const [investmentScrollStep, setInvestmentScrollStep] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const problems = [
     { id: 1, icon: '🧑‍🔧', title: 'Too Much Manual Work', desc: 'Repeating the same tasks every day?', solution: 'Automation / Business Workflow', solutionDesc: 'Reduce repetitive work by allowing systems to handle predictable processes automatically.', tab: 'Automate' },
@@ -58,6 +59,12 @@ const Solutions = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -122,6 +129,7 @@ const Solutions = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (window.innerWidth <= 768) return;
       if (!fourWaysRef.current) return;
       const rect = fourWaysRef.current.getBoundingClientRect();
       const progress = -rect.top / (rect.height - window.innerHeight);
@@ -340,10 +348,9 @@ const Solutions = () => {
         </div>
       </section>
 
-
-      {/* 03 & 04 - Four Ways */}
-      <section className="s-four-ways" id="four-ways" ref={fourWaysRef} style={{ position: 'relative', height: '250vh', background: '#FDFBF7' }}>
-        <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      {/* 03 & 04 - Four Ways (Combined) */}
+      <section className="s-four-ways" id="four-ways" ref={fourWaysRef} data-active-tab={activeTab} style={{ position: 'relative', height: window.innerWidth > 768 ? '250vh' : 'auto', background: '#FDFBF7' }}>
+        <div style={{ position: window.innerWidth > 768 ? 'sticky' : 'relative', top: 0, height: window.innerWidth > 768 ? '100vh' : 'auto', display: 'flex', alignItems: window.innerWidth > 768 ? 'center' : 'flex-start', overflow: window.innerWidth > 768 ? 'hidden' : 'visible', paddingTop: window.innerWidth > 768 ? 0 : '40px' }}>
           
           {/* Background slanted bars */}
           <div className="s-problem-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden', background: 'repeating-linear-gradient(-45deg, rgba(212,175,55,0.06) 0px, rgba(212,175,55,0.06) 150px, transparent 150px, transparent 300px)' }}></div>
@@ -352,13 +359,13 @@ const Solutions = () => {
           <div style={{ position: 'absolute', left: '-15%', top: '-30%', width: '60%', height: '160%', transform: 'rotate(25deg)', background: 'linear-gradient(to right, #FDFBF7 40%, rgba(255,255,255,0.4) 100%)', boxShadow: '10px 0 30px rgba(212,175,55,0.05)', zIndex: 0, pointerEvents: 'none' }}></div>
 
           {/* Intro Screen Overlay */}
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#FDFBF7', opacity: activeTab === 'Intro' ? 1 : 0, pointerEvents: activeTab === 'Intro' ? 'all' : 'none', transition: 'all 0.6s ease-in-out', transform: activeTab === 'Intro' ? 'scale(1)' : 'scale(1.05)', paddingTop: '80px' }}>
+          <div className="s-four-ways-intro" style={{ position: window.innerWidth > 768 ? 'absolute' : 'relative', top: 0, left: 0, width: '100%', height: window.innerWidth > 768 ? '100%' : 'auto', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#FDFBF7', opacity: activeTab === 'Intro' ? 1 : 0, pointerEvents: activeTab === 'Intro' ? 'all' : 'none', transition: 'all 0.6s ease-in-out', transform: activeTab === 'Intro' ? 'scale(1)' : 'scale(1.05)', paddingTop: window.innerWidth > 768 ? '80px' : '40px', paddingBottom: window.innerWidth > 768 ? 0 : '40px' }}>
             <div style={{ letterSpacing: '0.15em', fontSize: '0.85rem', color: '#6B7280', fontWeight: 700, marginBottom: '20px', textTransform: 'uppercase' }}>THE RIGHT APPROACH. THE RIGHT SOLUTION.</div>
             <h2 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#111827', marginBottom: '40px', lineHeight: '1.2', textAlign: 'center' }}>
               THERE IS MORE THAN ONE WAY<br/>
               <span style={{ color: '#D4AF37' }}>TO SOLVE A PROBLEM.</span>
             </h2>
-            <div style={{ display: 'flex', gap: '30px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div className="s-four-ways-intro-cards" style={{ display: 'flex', gap: '30px', flexWrap: 'wrap', justifyContent: 'center' }}>
               {['Build', 'Connect', 'Automate', 'Experience'].map(tab => {
                 const iconMap = {
                    Build: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>,
@@ -367,7 +374,14 @@ const Solutions = () => {
                    Experience: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                 };
                 return (
-                 <div key={tab} onClick={() => { setActiveTab(tab); window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); }} style={{ width: '220px', padding: '40px 20px', background: 'linear-gradient(to bottom, #ffffff, #f9fafb)', borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,1), inset 0 -4px 0 rgba(0,0,0,0.05)', border: '1px solid rgba(212,175,55,0.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', cursor: 'pointer', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)'; e.currentTarget.style.boxShadow = '0 30px 60px rgba(212,175,55,0.15), 0 1px 3px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,1), inset 0 -4px 0 rgba(0,0,0,0.05)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0) scale(1)'; e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,1), inset 0 -4px 0 rgba(0,0,0,0.05)'; }}>
+                 <div key={tab} onClick={() => { 
+                   setActiveTab(tab); 
+                   if (window.innerWidth > 768) {
+                     window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); 
+                   } else {
+                     fourWaysRef.current.scrollIntoView({ behavior: 'smooth' });
+                   }
+                 }} style={{ width: '220px', padding: '40px 20px', background: 'linear-gradient(to bottom, #ffffff, #f9fafb)', borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,1), inset 0 -4px 0 rgba(0,0,0,0.05)', border: '1px solid rgba(212,175,55,0.15)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', cursor: 'pointer', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-12px) scale(1.02)'; e.currentTarget.style.boxShadow = '0 30px 60px rgba(212,175,55,0.15), 0 1px 3px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,1), inset 0 -4px 0 rgba(0,0,0,0.05)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0) scale(1)'; e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,1), inset 0 -4px 0 rgba(0,0,0,0.05)'; }}>
                    <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', boxShadow: '0 10px 25px rgba(245,158,11,0.3)' }}>
                      {iconMap[tab]} 
                    </div>
@@ -380,7 +394,7 @@ const Solutions = () => {
             </div>
           </div>
 
-          <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%', maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '60px', alignItems: 'center', padding: '5vh 20px', opacity: activeTab !== 'Intro' ? 1 : 0, transform: activeTab !== 'Intro' ? 'scale(1)' : 'scale(0.95)', transition: 'all 0.6s ease-in-out', pointerEvents: activeTab !== 'Intro' ? 'all' : 'none' }}>
+          <div className="container" style={{ position: window.innerWidth > 768 ? 'absolute' : 'relative', zIndex: 1, width: '100%', maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '60px', alignItems: 'center', padding: '5vh 20px', opacity: activeTab !== 'Intro' ? 1 : 0, transform: activeTab !== 'Intro' ? 'scale(1)' : 'scale(0.95)', transition: 'all 0.6s ease-in-out', pointerEvents: activeTab !== 'Intro' ? 'all' : 'none' }}>
             
             {/* Left Column */}
             <div style={{ paddingRight: '20px' }}>
@@ -394,7 +408,7 @@ const Solutions = () => {
             </p>
             
             {/* Bottom 4 Nav Circles */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="s-four-ways-nav-circles" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {['Build', 'Connect', 'Automate', 'Experience'].map(tab => {
                  const isActive = activeTab === tab;
                  const iconMap = {
@@ -404,7 +418,14 @@ const Solutions = () => {
                    Experience: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                  };
                  return (
-                   <div key={tab} onClick={() => { setActiveTab(tab); window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px', cursor: 'pointer', flex: 1 }}>
+                   <div key={tab} onClick={() => { 
+                     setActiveTab(tab); 
+                     if (window.innerWidth > 768) {
+                       window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); 
+                     } else {
+                       fourWaysRef.current.scrollIntoView({ behavior: 'smooth' });
+                     }
+                   }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px', cursor: 'pointer', flex: 1 }}>
                      <div style={{ width: '75px', height: '75px', borderRadius: '50%', background: isActive ? '#FDFBF7' : '#F9FAFB', display: 'flex', alignItems: 'center', justifyContent: 'center', color: isActive ? '#111827' : '#9CA3AF', boxShadow: isActive ? '0 10px 25px rgba(212,175,55,0.2)' : 'none', border: isActive ? '2px solid rgba(212,175,55,0.4)' : '2px solid transparent', transition: 'all 0.3s' }}>
                        {iconMap[tab]}
                      </div>
@@ -418,11 +439,18 @@ const Solutions = () => {
           {/* Right Column */}
           <div style={{ position: 'relative' }}>
             {/* Top Tabs */}
-            <div style={{ display: 'flex', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(10px)', borderRadius: '40px', padding: '6px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', marginBottom: '20px', border: '1px solid rgba(212,175,55,0.15)' }}>
+            <div className="s-four-ways-nav-pill" style={{ display: 'flex', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(10px)', borderRadius: '40px', padding: '6px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', marginBottom: '20px', border: '1px solid rgba(212,175,55,0.15)' }}>
               {['Build', 'Connect', 'Automate', 'Experience'].map(tab => {
                  const isActive = activeTab === tab;
                  return (
-                   <div key={tab} onClick={() => { setActiveTab(tab); window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); }} style={{ flex: 1, textAlign: 'center', padding: '15px 0', borderRadius: '35px', cursor: 'pointer', background: isActive ? 'linear-gradient(135deg, #B98031 0%, #E8BC6E 50%, #B98031 100%)' : 'transparent', color: isActive ? '#fff' : '#6B7280', fontWeight: isActive ? 700 : 600, fontSize: '0.85rem', letterSpacing: '0.05em', textTransform: 'uppercase', boxShadow: isActive ? '0 4px 15px rgba(185,128,49,0.4)' : 'none', transition: 'all 0.3s', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
+                   <div key={tab} onClick={() => { 
+                     setActiveTab(tab); 
+                     if (window.innerWidth > 768) {
+                       window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); 
+                     } else {
+                       fourWaysRef.current.scrollIntoView({ behavior: 'smooth' });
+                     }
+                   }} style={{ flex: 1, textAlign: 'center', padding: '15px 0', borderRadius: '35px', cursor: 'pointer', background: isActive ? 'linear-gradient(135deg, #B98031 0%, #E8BC6E 50%, #B98031 100%)' : 'transparent', color: isActive ? '#fff' : '#6B7280', fontWeight: isActive ? 700 : 600, fontSize: '0.85rem', letterSpacing: '0.05em', textTransform: 'uppercase', boxShadow: isActive ? '0 4px 15px rgba(185,128,49,0.4)' : 'none', transition: 'all 0.3s', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
                      <span style={{ transform: 'scale(0.8)', opacity: isActive ? 1 : 0.7 }}>
                         {tab === 'Build' ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> : tab === 'Connect' ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg> : tab === 'Automate' ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>}
                      </span>
@@ -528,7 +556,7 @@ const Solutions = () => {
       </section>
 
       {/* 08 - Or Maybe it's Already Built */}
-      <section style={{ width: '100%', minHeight: '500px', backgroundColor: '#FDFBF7', display: 'flex', borderTop: '1px solid rgba(212,175,55,0.1)', borderBottom: '1px solid rgba(212,175,55,0.1)' }}>
+      <section className="s-already-built-section" style={{ width: '100%', minHeight: '500px', backgroundColor: '#FDFBF7', display: 'flex', borderTop: '1px solid rgba(212,175,55,0.1)', borderBottom: '1px solid rgba(212,175,55,0.1)' }}>
         
         {/* Background Image Container */}
         <div style={{ flex: '0 0 35%', minWidth: '350px', position: 'relative', WebkitMaskImage: 'linear-gradient(to right, black 0%, black 80%, transparent 100%)', maskImage: 'linear-gradient(to right, black 0%, black 80%, transparent 100%)' }}>
@@ -588,11 +616,11 @@ const Solutions = () => {
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"></path><path d="M10 18l-3 3-3-3"></path><path d="M7 21V10"></path><path d="M14 6l3-3 3 3"></path><path d="M17 3v11"></path></svg>
                   </div>
                   <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 700, color: '#1E3A8A', lineHeight: '1.4' }}>
-                    We won't build something<br/>just because we can.
+                    We won't build something <br/>just because we can.
                   </h4>
                 </div>
                 <p style={{ fontSize: '0.85rem', color: '#6B7280', lineHeight: '1.7', marginBottom: '30px' }}>
-                  Sometimes the right solution is an<br/>existing product. Sometimes it is a small<br/>improvement. Sometimes it is an<br/>integration. And sometimes a new<br/>system really is necessary.
+                  Sometimes the right solution is an <br/>existing product. Sometimes it is a small <br/>improvement. Sometimes it is an <br/>integration. And sometimes a new <br/>system really is necessary.
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   <button style={{ background: 'linear-gradient(135deg, #B98031 0%, #E8BC6E 50%, #B98031 100%)', color: '#fff', border: 'none', padding: '12px 28px', borderRadius: '30px', fontWeight: 600, cursor: 'pointer', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 15px rgba(185,128,49,0.3)' }}>
@@ -608,7 +636,7 @@ const Solutions = () => {
 
       {/* 09 - Architecture Layers */}
       {/* 09 - Architecture Layers */}
-      <section style={{ position: 'relative', width: '100%', padding: '30px 0', backgroundColor: '#FDFBF7', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid rgba(212,175,55,0.1)', overflow: 'hidden' }}>
+      <section className="s-architecture-section" style={{ position: 'relative', width: '100%', padding: '30px 0', backgroundColor: '#FDFBF7', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTop: '1px solid rgba(212,175,55,0.1)', overflow: 'hidden' }}>
         
         {/* Background Centered Image with Radial Fade */}
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '100%', maxWidth: '600px', height: '85%', zIndex: 1, pointerEvents: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -682,7 +710,7 @@ const Solutions = () => {
       </section>
 
       {/* 10 - Process Timeline */}
-      <section style={{ position: 'relative', width: '100%', height: '100vh', minHeight: '650px', backgroundColor: '#FDFBF7', display: 'flex', overflow: 'hidden', borderTop: '1px solid rgba(212,175,55,0.1)' }}>
+      <section className="s-process-section" style={{ position: 'relative', width: '100%', height: '100vh', minHeight: '650px', backgroundColor: '#FDFBF7', display: 'flex', overflow: 'hidden', borderTop: '1px solid rgba(212,175,55,0.1)' }}>
         
         {/* Right Side Background Image with fade mask */}
         <div style={{ position: 'absolute', top: 0, right: 0, width: '45%', height: '100%', zIndex: 1, pointerEvents: 'none' }}>
@@ -734,7 +762,7 @@ const Solutions = () => {
       </section>
 
       {/* 11 - Decision Flow */}
-      <section style={{ backgroundColor: '#FDFBF7', padding: '20px 40px', overflow: 'hidden' }}>
+      <section className="s-decision-section" style={{ backgroundColor: '#FDFBF7', padding: '20px 40px', overflow: 'hidden' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', maxWidth: '1450px', margin: '0 auto', gap: '40px' }}>
           
           {/* Left Side: Text and Button */}
@@ -790,24 +818,46 @@ const Solutions = () => {
 
 
       {/* 14 - Cost / Scope (Animated Sticky Section) */}
-      <section ref={investmentScrollRef} style={{ position: 'relative', width: '100%', height: '400vh', background: '#FDFBF7' }}>
+      <section className="s-cost-section" ref={investmentScrollRef} style={{ position: 'relative', width: '100%', height: '400vh', background: '#FDFBF7' }}>
         <div style={{
-          position: 'sticky', top: 0, height: '100vh', paddingTop: '80px', width: '100%', overflow: 'hidden',
+          position: 'sticky', top: isMobile ? '60px' : '0', 
+          height: isMobile ? 'calc(100vh - 60px)' : '100vh', 
+          paddingTop: isMobile ? '0' : '80px', 
+          padding: isMobile ? '15px' : undefined,
+          width: '100%', 
+          overflow: isMobile ? 'visible' : 'hidden',
           backgroundColor: '#FDFBF7',
           backgroundImage: `url(${solutionsBgImg})`,
           backgroundPosition: 'right center',
           backgroundSize: 'auto 100%',
           backgroundRepeat: 'no-repeat',
-          display: 'flex', alignItems: 'center',
+          display: 'flex', 
+          alignItems: isMobile ? 'flex-start' : 'center',
           boxShadow: 'inset 0 20px 30px -10px rgba(0,0,0,0.02)'
         }}>
           {/* Gradient Overlay for Left Side */}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #FDFBF7 40%, rgba(253,251,247,0.95) 65%, transparent 100%)' }}></div>
           
-          <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexWrap: 'wrap', alignItems: 'center', width: '92%', maxWidth: '1700px', margin: '0 auto', gap: '40px' }}>
+          <div className="s-cost-inner" style={{ 
+            position: 'relative', zIndex: 2, 
+            display: 'flex', 
+            flexWrap: isMobile ? 'nowrap' : 'wrap', 
+            flexDirection: isMobile ? 'column' : 'row',
+            alignItems: isMobile ? 'flex-start' : 'center', 
+            width: isMobile ? '100%' : '92%', 
+            maxWidth: '1700px', 
+            margin: '0 auto', 
+            gap: isMobile ? '12px' : '40px',
+            height: isMobile ? '100%' : 'auto'
+          }}>
             
             {/* Left Side */}
-            <div style={{ flex: '1 1 45%', minWidth: '450px', maxWidth: '500px' }}>
+            <div className="s-cost-left" style={{ 
+              flex: isMobile ? '0 0 auto' : '1 1 45%', 
+              minWidth: isMobile ? '0' : '450px', 
+              maxWidth: isMobile ? '100%' : '500px',
+              width: isMobile ? '100%' : undefined
+            }}>
               <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.15em', color: '#9CA3AF', textTransform: 'uppercase', marginBottom: '15px' }}>OUR APPROACH</div>
               <h2 style={{ fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)', fontWeight: 800, color: '#111827', marginBottom: '15px', lineHeight: '1.2' }}>
                 THE RIGHT SOLUTION HAS<br/><span style={{ color: '#B98031' }}>THE RIGHT INVESTMENT.</span>
@@ -836,8 +886,26 @@ const Solutions = () => {
             </div>
   
             {/* Right Side: The Wheel Infographic */}
-            <div style={{ flex: '1 1 50%', minWidth: '400px', maxWidth: '480px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ position: 'relative', width: '100%', maxWidth: '480px', aspectRatio: '1/1' }}>
+            <div className="s-cost-right" style={{ 
+              flex: isMobile ? '1 1 100%' : '1 1 50%', 
+              minWidth: isMobile ? '0' : '400px', 
+              maxWidth: isMobile ? '100%' : '480px', 
+              width: isMobile ? '100%' : undefined,
+              position: 'relative', 
+              display: 'flex', 
+              alignItems: isMobile ? 'flex-start' : 'center', 
+              justifyContent: 'center',
+              overflow: 'visible'
+            }}>
+              <div className="s-cost-wheel" style={{ 
+                position: 'relative', 
+                width: isMobile ? '480px' : '100%', 
+                maxWidth: isMobile ? 'none' : '480px', 
+                aspectRatio: '1/1',
+                transform: isMobile ? 'scale(0.55)' : 'none',
+                transformOrigin: isMobile ? 'top center' : 'center center',
+                marginLeft: isMobile ? 'calc(50% - 240px)' : '0'
+              }}>
                 
                 {/* 3D Wheel SVG */}
                 <svg width="100%" height="100%" viewBox="0 0 700 700" style={{ 

@@ -550,3 +550,580 @@
   display: block;
   max-width: 600px;
 }
+
+/* --- LARGE MOBILE / TABLET (max-width: 768px) --- */
+@media (max-width: 768px) {
+  /* Hide manual breaks in descriptions to ensure full width flow, but preserve structural breaks */
+  p br { display: none !important; }
+  
+  /* Reset general sections */
+  section { min-height: auto !important; height: auto !important; padding: 60px 20px !important; display: flex !important; flex-direction: column !important; }
+  
+  /* Typography overrides for mobile */
+  h2, .section-title { font-size: clamp(1.8rem, 6vw, 2.3rem) !important; text-align: left !important; line-height: 1.2 !important; }
+  p { font-size: 0.9rem !important; line-height: 1.5 !important; max-width: 100% !important; }
+
+  /* 01 - Hero Section */
+  .hero-snap-wrapper { height: auto !important; }
+  .hero-section { padding-top: 100px !important; padding-bottom: 50px !important; min-height: auto !important; }
+  .hero-container { flex-direction: column !important; text-align: left !important; gap: 20px !important; }
+  .hero-content { max-width: 100% !important; text-align: left !important; margin: 0 !important; padding: 0 !important; }
+  .hero-title { font-size: clamp(2.5rem, 8vw, 3.2rem) !important; margin-bottom: 10px !important; }
+  .hero-subtitle { font-size: clamp(1.4rem, 5vw, 1.8rem) !important; margin-bottom: 20px !important; }
+  .hero-actions { justify-content: flex-start !important; flex-direction: column !important; gap: 15px !important; width: 100% !important; }
+  .hero-actions a, .hero-actions button { width: 100% !important; justify-content: center !important; text-align: center !important; }
+  
+  /* 02 - Problem Section */
+  .s-problem { padding-top: 50px !important; }
+  .s-problem .section-title { display: block !important; }
+  .s-problem-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; align-items: start !important; }
+  .s-problem-grid > div { height: auto !important; min-height: 150px !important; }
+  .s-problem-grid .flip-card-front, .s-problem-grid > div > div > div:last-child { padding: 12px !important; justify-content: flex-start !important; }
+  .s-problem-grid h4 { font-size: 0.8rem !important; color: #0f172a !important; line-height: 1.3 !important; }
+  .s-problem-grid p { font-size: 0.7rem !important; padding-bottom: 5px !important; color: #334155 !important; font-weight: 500 !important; margin-bottom: 0 !important; }
+  .s-problem-grid > div > div > div:last-child p { font-size: 0.7rem !important; color: #334155 !important; }
+  
+  .example-card { flex-direction: column !important; min-height: auto !important; margin-top: 20px !important; }
+  .example-card > div:first-child { width: 100% !important; padding: 15px !important; text-align: left !important; }
+  .example-card > div:first-child p { font-size: 0.7rem !important; }
+  .example-card > div:first-child div { font-size: 0.75rem !important; }
+  .example-card > div:last-child { position: relative !important; width: 100% !important; height: 160px !important; }
+
+  /* 03 & 04 - Four Ways (Scrolljacking Preserved) */
+  .s-four-ways { padding: 0 !important; }
+  /* Keep height: 250vh from inline styles, do not override to auto so scrolling works */
+  
+  /* Intro Screen Mobile Styles */
+  .s-four-ways-intro { padding: 60px 20px !important; justify-content: center !important; }
+  .s-four-ways-intro h2 { font-size: clamp(2rem, 8vw, 2.8rem) !important; text-align: center !important; margin-bottom: 30px !important; }
+  .s-four-ways-intro-cards { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 15px !important; width: 100% !important; }
+  .s-four-ways-intro-cards > div { width: 100% !important; padding: 20px 10px !important; }
+  .s-four-ways-intro-cards > div > div:first-child { width: 50px !important; height: 50px !important; }
+  .s-four-ways-intro-cards > div > div:first-child svg { width: 24px !important; height: 24px !important; }
+  .s-four-ways-intro-cards > div > div:nth-child(2) { font-size: 1rem !important; }
+  /* Content Container Styles (When scrolled) */
+  .s-four-ways .container { grid-template-columns: 1fr !important; display: flex !important; flex-direction: column !important; gap: 40px !important; padding: 40px 20px !important; }
+  
+  /* Fix narrow squished flex layout on mobile */
+  .s-four-ways > div:first-child { 
+    display: block !important; 
+    height: auto !important; 
+    position: relative !important; 
+    overflow: visible !important;
+  }
+  .s-four-ways-intro {
+    position: relative !important;
+    height: auto !important;
+    width: 100% !important;
+  }
+  
+  /* Use data-attribute to hide inactive section on mobile */
+  .s-four-ways[data-active-tab="Intro"] .container { display: none !important; }
+  .s-four-ways:not([data-active-tab="Intro"]) .s-four-ways-intro { display: none !important; }
+  
+  /* Hide redundant massive nav circles on mobile */
+  .s-four-ways-nav-circles { display: none !important; }
+  
+  /* Four ways Left column (now just text) */
+  .s-four-ways .container > div:first-child { padding-right: 0 !important; text-align: center !important; }
+  .s-four-ways .container > div:first-child p { margin-bottom: 20px !important; text-align: center !important; }
+  
+  /* Four ways Right column */
+  .s-four-ways .container > div:last-child { width: 100% !important; }
+  
+  /* Top Tabs (Pill Navigation) converted to 2x2 grid on mobile */
+  .s-four-ways-nav-pill { 
+    display: grid !important; 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 10px !important; 
+    background: transparent !important; 
+    border: none !important; 
+    box-shadow: none !important; 
+    padding: 0 !important;
+    margin-bottom: 30px !important;
+  }
+  .s-four-ways-nav-pill > div { 
+    background: rgba(255,255,255,0.9); /* Removed !important to allow inline active gradient to show */
+    border: 1px solid rgba(212,175,55,0.15) !important;
+    padding: 12px 0 !important;
+    border-radius: 12px !important;
+  }
+
+  /* Big Content Card inside Right Column */
+  .s-four-ways-nav-pill + div {
+      padding: 25px 20px 20px 20px !important; 
+      min-height: auto !important; 
+      height: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+  }
+  
+  /* Text Container inside Big Content Card */
+  .s-four-ways-nav-pill + div > div:first-child { 
+      width: 100% !important; 
+      height: auto !important; 
+      position: relative !important;
+  }
+  
+  /* Position text contents relatively so they expand height properly */
+  .s-four-ways-nav-pill + div > div:first-child > div {
+      position: relative !important;
+      opacity: 1 !important; 
+      transform: none !important;
+      top: auto !important;
+      left: auto !important;
+      bottom: auto !important;
+  }
+  
+  /* Hide inactive text contents based on data-active-tab */
+  .s-four-ways:not([data-active-tab="Build"]) .s-four-ways-nav-pill + div > div:first-child > div:nth-child(1),
+  .s-four-ways:not([data-active-tab="Connect"]) .s-four-ways-nav-pill + div > div:first-child > div:nth-child(2),
+  .s-four-ways:not([data-active-tab="Automate"]) .s-four-ways-nav-pill + div > div:first-child > div:nth-child(3),
+  .s-four-ways:not([data-active-tab="Experience"]) .s-four-ways-nav-pill + div > div:first-child > div:nth-child(4) {
+      display: none !important;
+  }
+
+  /* Explore Button Margin */
+  .s-four-ways-nav-pill + div > div:first-child > div:nth-child(5) {
+      margin-top: 25px !important;
+      display: flex !important;
+      justify-content: center !important;
+  }
+
+  /* Hide inactive graphic containers */
+  .s-four-ways:not([data-active-tab="Build"]) .s-four-ways-nav-pill + div > div:nth-child(2),
+  .s-four-ways:not([data-active-tab="Connect"]) .s-four-ways-nav-pill + div > div:nth-child(3),
+  .s-four-ways:not([data-active-tab="Automate"]) .s-four-ways-nav-pill + div > div:nth-child(4),
+  .s-four-ways:not([data-active-tab="Experience"]) .s-four-ways-nav-pill + div > div:nth-child(5) {
+      display: none !important;
+  }
+
+  /* Position active graphic naturally below text */
+  .s-four-ways-nav-pill + div > div:nth-child(n+2):not(:last-child) { 
+       position: relative !important;
+       top: auto !important; 
+       bottom: auto !important; 
+       right: auto !important; 
+       left: auto !important;
+       width: 100% !important; 
+       height: 180px !important; 
+       margin-top: 15px !important;
+       mask-image: none !important;
+       -webkit-mask-image: none !important;
+       display: flex !important;
+       justify-content: center !important;
+  }
+  .s-four-ways-nav-pill + div > div:nth-child(n+2):not(:last-child) img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+  }
+
+  /* Hide right-edge decorative mini icons on mobile */
+  .s-four-ways-nav-pill + div > div:last-child {
+      display: none !important;
+  }
+
+  
+  /* 08 - Already Built */
+  .s-already-built-section { padding: 0 !important; flex-direction: column !important; }
+  .s-already-built-section > div:first-child { position: relative !important; width: 100% !important; height: 180px !important; min-width: auto !important; }
+  .s-already-built-section > div:last-child { padding: 30px 20px !important; }
+  .s-already-built-section > div:last-child > div { flex-direction: column !important; gap: 30px !important; }
+  .s-already-built-section > div:last-child > div > div:first-child { width: 100% !important; align-items: flex-start !important; }
+  /* Grid of services */
+  .s-already-built-section > div:last-child > div > div:first-child > div:last-child { 
+      grid-template-columns: repeat(2, 1fr) !important; 
+      width: 100% !important; 
+      gap: 15px 10px !important; 
+  }
+  .s-already-built-section > div:last-child > div > div:first-child > div:last-child > div:not(:empty) { 
+      flex-direction: column !important; 
+      gap: 5px !important; 
+      text-align: center !important; 
+      justify-content: flex-start !important; 
+  }
+  .s-already-built-section > div:last-child > div > div:first-child > div:last-child > div span { 
+      font-size: 0.7rem !important; 
+  }
+  .s-already-built-section > div:last-child > div > div:first-child > div:last-child > div:empty { display: none !important; }
+  .s-already-built-section > div:last-child > div > div:last-child { width: 100% !important; }
+  
+  /* 09 - Architecture Layers */
+  .s-architecture-section { flex-direction: column !important; padding: 20px 0 !important; }
+  /* Dim the background image heavily on mobile so dark text over it is perfectly readable */
+  .s-architecture-section > div:first-child { opacity: 0.1 !important; height: 100% !important; }
+  .s-architecture-section > div:last-child { flex-direction: column !important; padding: 0 20px !important; gap: 30px !important; }
+  .s-architecture-section > div:last-child > div:first-child { max-width: 100% !important; }
+  
+  /* Compact list gaps - Top List as 2x2 Grid */
+  .s-architecture-section > div:last-child > div:first-child > div:last-child { 
+      display: grid !important; 
+      grid-template-columns: repeat(2, 1fr) !important; 
+      gap: 15px 10px !important; 
+  }
+  .s-architecture-section > div:last-child > div:first-child > div:last-child > div { 
+      flex-direction: column !important; 
+      align-items: center !important; 
+      text-align: center !important; 
+      gap: 5px !important; 
+  }
+  .s-architecture-section > div:last-child > div:first-child > div:last-child > div span { 
+      font-size: 0.75rem !important; 
+  }
+
+  /* Bottom Layers List as 2x2 Grid */
+  .s-architecture-section > div:last-child > div:last-child { 
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px 10px !important;
+      max-width: 100% !important; 
+      width: 100% !important; 
+  }
+  .s-architecture-section > div:last-child > div:last-child > div { 
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      gap: 8px !important; 
+  }
+  .s-architecture-section > div:last-child > div:last-child > div h4 {
+      font-size: 0.8rem !important;
+  }
+  .s-architecture-section > div:last-child > div:last-child > div ul { 
+      gap: 2px !important; 
+      align-items: center !important;
+  }
+  .s-architecture-section > div:last-child > div:last-child > div ul li {
+      font-size: 0.65rem !important;
+  }
+  /* Center the 5th Layer (Growth Layer) */
+  .s-architecture-section > div:last-child > div:last-child > div:nth-child(5) {
+      grid-column: span 2 !important;
+  }
+
+  /* 10 - Process Timeline */
+  .s-process-section { padding: 0 !important; }
+  .s-process-section > div:first-child { position: relative !important; width: 100% !important; height: 180px !important; }
+  .s-process-section > div:last-child { padding: 20px 20px !important; }
+  .s-process-section > div:last-child > div { width: 100% !important; padding-right: 0 !important; }
+  
+  /* Process Timeline Grid */
+  .s-process-section > div:last-child > div > div:last-child > div { 
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important; 
+      gap: 20px 10px !important;
+  }
+  .s-process-section > div:last-child > div > div:last-child > div > div { 
+      height: auto !important; 
+      margin-bottom: 0 !important; 
+      align-items: center !important;
+      text-align: center !important;
+      padding-right: 0 !important;
+  }
+  
+  /* Icon Circle */
+  .s-process-section > div:last-child > div > div:last-child > div > div > div:first-child {
+      left: auto !important;
+      transform: none !important;
+      top: auto !important;
+      width: 40px !important;
+      height: 40px !important;
+      margin-bottom: 8px !important;
+  }
+  .s-process-section > div:last-child > div > div:last-child > div > div > div:first-child svg {
+      width: 18px !important;
+      height: 18px !important;
+  }
+  
+  /* The Number ID (01, 02) */
+  .s-process-section > div:last-child > div > div:last-child > div > div > div:nth-child(2) {
+      width: auto !important;
+      height: auto !important;
+      font-size: 0.7rem !important;
+      margin-bottom: 2px !important;
+  }
+  
+  /* The Title */
+  .s-process-section > div:last-child > div > div:last-child > div > div > div:nth-child(3) {
+      font-size: 0.75rem !important;
+      margin-bottom: 4px !important;
+  }
+  
+  /* The Description */
+  .s-process-section > div:last-child > div > div:last-child > div > div > div:nth-child(4) {
+      font-size: 0.65rem !important;
+  }
+  
+  /* Last item (09) spans full width */
+  .s-process-section > div:last-child > div > div:last-child > div > div:last-child {
+      grid-column: span 2 !important;
+  }
+
+  /* 11 - Decision Flow */
+  .s-decision-section { padding: 15px 10px 0 10px !important; min-height: 0 !important; height: auto !important; margin-bottom: 0 !important; } 
+  .s-decision-section > div { flex-direction: column !important; gap: 15px !important; margin-bottom: 0 !important; padding-bottom: 0 !important; } 
+  
+  /* Kill the flex-basis height bug that creates massive empty space */
+  .s-decision-section > div > div:first-child { 
+      flex: none !important; 
+      height: auto !important; 
+      max-width: 100% !important; 
+      align-items: flex-start !important; 
+      margin-bottom: 0 !important; 
+  }
+  .s-decision-section > div > div:first-child h2 { font-size: 1.5rem !important; margin-bottom: 10px !important; }
+  .s-decision-section > div > div:first-child p { margin-bottom: 15px !important; } 
+  .s-decision-section > div > div:first-child button { margin-bottom: 0 !important; }
+  
+  /* Dynamic grid layout for flexible screen packing */
+  .s-decision-flow-grid { 
+      display: grid !important; 
+      grid-template-columns: repeat(4, 1fr) !important; /* Force 4 items per row */
+      gap: 6px 4px !important; /* Micro gaps */
+      width: 100% !important; 
+      align-content: start !important;
+      margin-top: 5px !important; 
+      margin-bottom: 0 !important; 
+      padding-bottom: 0 !important;
+  }
+  
+  /* Reset the wrapper div for the 8 cards ONLY (avoid final pill) */
+  .s-decision-flow-grid > div:not(:last-child) { 
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      margin: 0 !important;
+      height: 100% !important;
+  }
+  
+  /* The Card (Box + Text) */
+  .s-decision-flow-grid > div:not(:last-child) > div:first-child {
+      flex-direction: column !important; /* Stack icon above text */
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important; /* Ultra tight gap */
+      background: #fff !important;
+      padding: 10px 2px !important; /* Squeezed padding for 4 columns */
+      border-radius: 8px !important;
+      width: 100% !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03) !important;
+      border: 1px solid rgba(212,175,55,0.1) !important;
+      height: 100% !important;
+      min-height: 0 !important; 
+  }
+  /* The Icon Box */
+  .s-decision-flow-grid > div:not(:last-child) > div:first-child > div:first-child {
+      width: 24px !important; /* Scaled down for 4 columns */
+      height: 24px !important;
+      border-radius: 6px !important;
+      box-shadow: none !important; 
+      border: 1px solid rgba(212,175,55,0.3) !important;
+      margin-bottom: 2px !important;
+  }
+  .s-decision-flow-grid > div:not(:last-child) > div:first-child > div:first-child svg {
+      width: 12px !important;
+      height: 12px !important;
+  }
+  /* The Text */
+  .s-decision-flow-grid > div:not(:last-child) > div:first-child > div:last-child {
+      font-size: 0.55rem !important; /* Micro text for 4 columns */
+      line-height: 1.1 !important;
+      width: 100% !important;
+      text-align: center !important;
+      margin: 0 !important;
+  }
+  
+  /* HIDE ALL ARROWS to make the grid ultra-compact */
+  .flow-arrow { 
+      display: none !important;
+  }
+  
+  /* Final Pill Node */
+  .s-decision-flow-grid > div:last-child { 
+      grid-column: 1 / -1 !important;
+      width: 100% !important; 
+      margin-top: 15px !important; 
+      margin-bottom: 0 !important;
+      padding: 12px 20px !important;
+      border-radius: 30px !important;
+      height: auto !important;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 12px !important;
+      background: #fff !important;
+      border: 1px solid rgba(212,175,55,0.3) !important;
+  }
+  .s-decision-flow-grid > div:last-child > div:first-child {
+      width: 30px !important; 
+      height: 30px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 50% !important;
+      background: linear-gradient(135deg, #D4AF37, #AA8C2C) !important;
+      border: none !important;
+  }
+  .s-decision-flow-grid > div:last-child > div:first-child svg {
+      width: 16px !important;
+      height: 16px !important;
+  }
+  .s-decision-flow-grid > div:last-child > div:last-child {
+      font-size: 0.9rem !important;
+      text-align: left !important;
+  }
+  
+  /* 14 - Cost / Scope */
+  .s-cost-section { 
+      height: 250vh !important; 
+      padding: 0 !important; 
+      margin-top: 0 !important; 
+  }
+  .s-cost-section > div { 
+      position: sticky !important; 
+      top: 60px !important; 
+      height: calc(100vh - 60px) !important; 
+      padding: 15px !important; 
+      display: flex !important; 
+      flex-direction: column !important; 
+      overflow: visible !important; 
+  }
+
+  /* Main inner wrapper — stack vertically */
+  .s-cost-inner {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      gap: 15px !important;
+      flex: 1 1 100% !important;
+  }
+  
+  /* Left (text) side — shrink to fit */
+  .s-cost-left {
+      flex: 0 0 auto !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      gap: 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+  }
+  .s-cost-left > div:first-child { font-size: 0.6rem !important; margin-bottom: 0 !important; }
+  .s-cost-left h2 { font-size: 1.35rem !important; margin-bottom: 0 !important; line-height: 1.2 !important; }
+  .s-cost-left > p { font-size: 0.82rem !important; margin-bottom: 0 !important; line-height: 1.4 !important; }
+
+  /* Glass box */
+  .s-cost-left > div:nth-of-type(2) {
+      padding: 10px 14px !important;
+      margin-bottom: 0 !important;
+      gap: 10px !important;
+  }
+  .s-cost-left > div:nth-of-type(2) > div:first-child {
+      flex: 0 0 30px !important; height: 30px !important;
+  }
+  .s-cost-left > div:nth-of-type(2) > div:first-child svg { width: 14px !important; height: 14px !important; }
+  .s-cost-left > div:nth-of-type(2) > div:last-child > div:first-child { font-size: 0.78rem !important; margin-bottom: 2px !important; }
+  .s-cost-left > div:nth-of-type(2) > div:last-child > div:last-child { font-size: 0.7rem !important; line-height: 1.3 !important; }
+
+  /* Button */
+  .s-cost-left > button { padding: 10px 18px !important; font-size: 0.8rem !important; margin-top: 0 !important; }
+
+  /* Right (wheel) side — fill remaining space */
+  .s-cost-right {
+      flex: 1 1 100% !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: center !important;
+      position: relative !important;
+      overflow: visible !important;
+  }
+
+  /* Wheel inner — scale in normal flow using transform */
+  .s-cost-wheel {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: scale(0.58) !important;
+      transform-origin: top center !important;
+      width: 480px !important;
+      height: 480px !important;
+      max-width: none !important;
+      margin: 0 auto !important;
+  }
+  
+  /* Hide decorative handwriting overlay on mobile */
+  .handwriting-text { display: none !important; }
+  
+  /* Hide the decorative rotating text ring on mobile to prevent overlapping */
+  .s-cost-section svg[viewBox="0 0 100 100"] { display: none !important; }
+  
+  /* Final CTA */
+  .s-cta { padding: 30px 10px !important; }
+  
+  /* Left and Right Side Container */
+  .s-cta > .container { gap: 20px !important; }
+  .s-cta > .container > div:first-child { margin-bottom: 0 !important; width: 100% !important; }
+  
+  /* Buttons - Force Same Horizontal Line */
+  .s-cta > .container > div:first-child > div:nth-of-type(2) { 
+      display: flex !important;
+      flex-wrap: nowrap !important; 
+      gap: 8px !important; 
+      width: 100% !important; 
+      justify-content: space-between !important;
+  }
+  .s-cta > .container > div:first-child > div:nth-of-type(2) > button { 
+      padding: 10px 4px !important; 
+      font-size: 0.7rem !important; 
+      flex: 1 1 50% !important; 
+      justify-content: center !important;
+      white-space: nowrap !important;
+      min-width: 0 !important; /* Allow shrinking */
+  }
+  .s-cta > .container > div:first-child > div:nth-of-type(2) > button svg {
+      width: 14px !important; 
+      height: 14px !important;
+      flex-shrink: 0 !important;
+  }
+  
+  /* Frosted Glass Container - Make Small & Compact */
+  .s-cta > .container > div:last-child > div { 
+      padding: 15px !important; 
+      border-radius: 12px !important;
+  }
+  .s-cta > .container > div:last-child > div > div {
+      gap: 2px !important; /* Eliminate column gaps */
+  }
+  
+  /* Item Rows */
+  .s-cta > .container > div:last-child > div > div > div:nth-child(odd) {
+      padding: 4px 0 !important;
+  }
+  /* Item Text */
+  .s-cta > .container > div:last-child > div > div > div:nth-child(odd) > div:nth-child(2) {
+      font-size: 0.75rem !important;
+  }
+  
+  /* Grey Line Dividers */
+  .s-cta > .container > div:last-child > div > div > div:nth-child(even) {
+      height: 1px !important;
+      min-height: 1px !important;
+      max-height: 1px !important;
+      margin: 4px 0 4px 40px !important;
+      background: rgba(0,0,0,0.08) !important;
+      border: none !important;
+  }
+}
+
+/* --- SMALL MOBILE (max-width: 480px) --- */
+@media (max-width: 480px) {
+  .s-problem-grid { grid-template-columns: 1fr !important; }
+  .s-four-ways-intro-cards { grid-template-columns: 1fr !important; }
+}
