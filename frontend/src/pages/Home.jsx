@@ -179,6 +179,35 @@ const Home = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [openGuidanceFaqIndex, setOpenGuidanceFaqIndex] = useState(null);
   const problemSectionRef = useRef(null);
+  const caseSliderRef = useRef(null);
+
+  const scrollCasePrev = () => {
+    if (caseSliderRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = caseSliderRef.current;
+      const scrollAmount = clientWidth;
+      
+      // If at start, scroll to end, else scroll previous
+      if (scrollLeft <= 10) {
+        caseSliderRef.current.scrollTo({ left: scrollWidth, behavior: 'smooth' });
+      } else {
+        caseSliderRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const scrollCaseNext = () => {
+    if (caseSliderRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = caseSliderRef.current;
+      const scrollAmount = clientWidth;
+      
+      // If we are at the end, scroll back to the start, else scroll to the next card
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        caseSliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        caseSliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -225,10 +254,7 @@ const Home = () => {
                   <span className="light-text">FREELANCERS</span>
                 </h1>
                 <p className="hero-subtitle">
-                  We don't just build <strong>software</strong>.<br />
-                  We find the right path for your business —<br />
-                  with technology, strategy and a deep understanding<br />
-                  of what really matters.
+                  We don't just build <strong>software</strong>. We find the right path for your business — with technology, strategy and a deep understanding of what really matters.
                 </p>
                 <div className="hero-actions">
                   <a href="#build" className="btn-primary">Let's Build &rarr;</a>
@@ -265,10 +291,8 @@ const Home = () => {
                 <span className="gold">BUSINESS?</span>
               </h2>
               <p className="problem-desc">
-                Every business has <strong>unique challenges</strong>. But the struggle<br/>
-                often feels the same — too much manual work, scattered data,<br/>
-                systems that don't fit, and technology that creates more<br/>
-                problems than it solves.<br/><br/>
+                Every business has <strong>unique challenges</strong>. But the struggle often feels the same — too much manual work, scattered data, systems that don't fit, and technology that creates more problems than it solves.
+                <br/><br/>
                 Sound familiar? You're not alone.
               </p>
               <a href="#help" className="btn-dark">See How We Help &rarr;</a>
@@ -322,9 +346,7 @@ const Home = () => {
                 <span className="gold">LET'S UNDERSTAND.</span>
               </h2>
               <p className="guidance-desc">
-                We help you think clearly — not just build quickly.<br/>
-                Get free guidance to make the right decisions for your
-                business, your team and your future.
+                We help you think clearly — not just build quickly. Get free guidance to make the right decisions for your business, your team and your future.
               </p>
               <a href="#guide" className="btn-primary" style={{marginTop: '20px'}}>Get Free Guidance &rarr;</a>
             </div>
@@ -387,10 +409,7 @@ const Home = () => {
                    <span className="gold">RIGHT SOFTWARE.</span>
                  </h2>
                  <p className="solutions-desc">
-                   Every business is different. That's why we offer<br/>
-                   multiple ways to solve your problems — whether it's<br/>
-                   through a web app, mobile app, automation or a<br/>
-                   fully custom solution.
+                   Every business is different. That's why we offer multiple ways to solve your problems — whether it's through a web app, mobile app, automation or a fully custom solution.
                  </p>
                  <a href="#all-solutions" className="link-arrow">
                    <span className="link-icon">🎯</span> Explore All Solutions &rarr;
@@ -469,12 +488,9 @@ const Home = () => {
                 <span className="gold">ALREADY BUILT.</span>
               </h2>
               <p className="products-desc">
-                Our ready-to-use products are built with <strong>real</strong><br/>
-                business needs in mind. Get started faster,<br/>
-                with proven solutions that you can configure<br/>
-                to fit your requirements.
+                Our ready-to-use products are built with <strong>real</strong> business needs in mind. Get started faster, with proven solutions that you can configure to fit your requirements.
               </p>
-              <a href="#all-products" className="btn-primary" style={{marginTop: '32px', display: 'inline-flex', padding: '14px 32px'}}>Explore Products &rarr;</a>
+              <a href="#all-products" className="btn-primary products-explore-btn">Explore Products &rarr;</a>
             </div>
             
             {/* RIGHT SIDE */}
@@ -585,11 +601,9 @@ const Home = () => {
                 <span className="gold" style={{ fontSize: '1.2em' }}>BLACK BOX.</span>
               </h2>
               <p className="transparency-desc">
-                You deserve to know what you're paying for. We believe<br/>
-                in complete transparency — from development to hosting,<br/>
-                from third-party services to ongoing support.
+                You deserve to know what you're paying for. We believe in complete transparency — from development to hosting, from third-party services to ongoing support.
               </p>
-              <a href="#how-it-works" className="btn-outline-gold" style={{marginTop: '32px'}}>See How It Works &rarr;</a>
+              <a href="#how-it-works" className="btn-outline-gold transparency-cta-btn">See How It Works &rarr;</a>
             </div>
 
             {/* COLUMN 2: Graphic and List */}
@@ -701,41 +715,45 @@ const Home = () => {
               <a href="#all-cases" className="btn-primary" style={{marginTop: '30px', background: 'var(--accent-gold)', borderColor: 'var(--accent-gold)'}}>View All Case Studies &rarr;</a>
             </div>
             
-            <div className="case-studies-slider">
-              {/* Case Study 1 */}
-              <div className="case-card">
-                <img src={insuranceCrmImg} alt="Insurance Agency" className="case-image" />
-                <div className="case-content">
-                  <div className="case-category">Insurance</div>
-                  <h3>Streamlining Operations for an Insurance Agency</h3>
-                  <p>Organized client data, faster support and better visibility across the team.</p>
-                  <div className="product-tags">
-                    <span className="tag">React</span>
-                    <span className="tag">Node.js</span>
-                    <span className="tag">MongoDB</span>
+            <div className="case-studies-slider-wrapper" style={{position: 'relative', flex: 1, minWidth: 0}}>
+              <div className="case-studies-slider" ref={caseSliderRef}>
+                {/* Case Study 1 */}
+                <div className="case-card">
+                  <img src={insuranceCrmImg} alt="Insurance Agency" className="case-image" />
+                  <div className="case-content">
+                    <div className="case-category">Insurance</div>
+                    <h3>Streamlining Operations for an Insurance Agency</h3>
+                    <p>Organized client data, faster support and better visibility across the team.</p>
+                    <div className="product-tags">
+                      <span className="tag">React</span>
+                      <span className="tag">Node.js</span>
+                      <span className="tag">MongoDB</span>
+                    </div>
+                    <div className="case-result">Improved efficiency by 60%</div>
                   </div>
-                  <div className="case-result">Improved efficiency by 60%</div>
+                </div>
+
+                {/* Case Study 2 */}
+                <div className="case-card">
+                  <img src={schoolErpImg} alt="School ERP" className="case-image" />
+                  <div className="case-content">
+                    <div className="case-category">Education</div>
+                    <h3>Complete School ERP for a Matric School</h3>
+                    <p>Automated admissions, attendance, fees and exam management.</p>
+                    <div className="product-tags">
+                      <span className="tag">React</span>
+                      <span className="tag">Node.js</span>
+                      <span className="tag">MongoDB</span>
+                    </div>
+                    <div className="case-result">Handled 500+ students</div>
+                  </div>
                 </div>
               </div>
-
-              {/* Case Study 2 */}
-              <div className="case-card">
-                <img src={schoolErpImg} alt="School ERP" className="case-image" />
-                <div className="case-content">
-                  <div className="case-category">Education</div>
-                  <h3>Complete School ERP for a Matric School</h3>
-                  <p>Automated admissions, attendance, fees and exam management.</p>
-                  <div className="product-tags">
-                    <span className="tag">React</span>
-                    <span className="tag">Node.js</span>
-                    <span className="tag">MongoDB</span>
-                  </div>
-                  <div className="case-result">Handled 500+ students</div>
-                </div>
-              </div>
-
               
-              <button className="slider-nav-right">
+              <button className="slider-nav-left" onClick={scrollCasePrev}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <button className="slider-nav-right" onClick={scrollCaseNext}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
               </button>
             </div>

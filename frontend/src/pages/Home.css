@@ -611,6 +611,11 @@
   margin-top: 16px;
 }
 
+.products-explore-btn {
+  margin-top: 32px;
+  padding: 14px 32px;
+}
+
 .products-filters {
   display: flex;
   justify-content: flex-end;
@@ -831,6 +836,10 @@
   background: rgba(200, 150, 78, 0.1);
 }
 
+.transparency-cta-btn {
+  margin-top: 32px;
+}
+
 .transparency-middle {
   flex: 1;
   display: flex;
@@ -853,6 +862,7 @@
   height: auto;
   object-fit: contain;
   transform: scale(1.6);
+  mix-blend-mode: multiply; /* Removes the white background from the image */
 }
 
 .transparency-list {
@@ -1076,9 +1086,8 @@
   margin-top: auto;
 }
 
-.slider-nav-right {
+.slider-nav-right, .slider-nav-left {
   position: absolute;
-  right: -24px;
   top: 50%;
   transform: translateY(-50%);
   width: 48px;
@@ -1093,6 +1102,16 @@
   cursor: pointer;
   z-index: 10;
   color: #1e293b;
+  transition: all 0.3s ease;
+}
+
+.slider-nav-right { right: -24px; }
+.slider-nav-left { left: -24px; }
+
+.slider-nav-right:hover, .slider-nav-left:hover {
+  background: var(--accent-gold);
+  color: white;
+  transform: translateY(-50%) scale(1.05);
 }
 .slider-nav-right svg {
   width: 20px;
@@ -2388,3 +2407,477 @@
 .transparency-section { padding: 40px 0 !important; margin-bottom: 0 !important; }
 .case-studies-section { margin-top: 0 !important; }
 
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Mobile, Tablet, Small Laptops)
+   ========================================================================== */
+
+/* --- SMALL LAPTOPS (max-width: 1440px) --- */
+@media (max-width: 1440px) {
+  .transparency-graphic img {
+    transform: scale(1.2); /* Prevent overflow on 1366px/1280px screens */
+  }
+}
+
+/* --- TABLET (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+  /* Layout */
+  .container { padding: 0 20px; }
+  
+  /* Hero */
+  .hero-container { flex-direction: column; text-align: center; gap: 30px; }
+  .hero-content { margin: 0 auto; display: flex; flex-direction: column; align-items: center; max-width: 100%; }
+  .hero-subtitle { margin-left: auto; margin-right: auto; max-width: 600px; }
+  
+  .hero-bg-image {
+    background-position: center center;
+  }
+  
+  .hero-bg-gradient { 
+    background: radial-gradient(ellipse at center 35%, rgba(250, 249, 246, 0.95) 0%, rgba(250, 249, 246, 0.85) 45%, rgba(250, 249, 246, 0) 75%); 
+    backdrop-filter: none; 
+    -webkit-backdrop-filter: none;
+    mask-image: none; 
+    -webkit-mask-image: none; 
+  }
+  
+  .hero-title, .hero-subtitle, .breadcrumb {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 1);
+  }
+  .hero-tags { justify-content: center; text-align: center; }
+
+  /* Problem Section */
+  .problem-container { flex-direction: column; text-align: center; gap: 40px; }
+  .problem-content { flex: none; width: 100%; }
+  .problem-cards { grid-template-columns: repeat(2, 1fr); width: 100%; }
+
+  /* Generic grid layouts for other sections */
+  .guidance-cards, .transparency-cards, .process-cards, .solutions-cards, 
+  .products-grid, .impact-metrics, .tech-grid, .why-us-grid, .our-trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Two-column flex and grid stack layouts */
+  .transparency-container, .why-us-container, .faq-container, .cta-container, .guidance-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  /* Tablet Fixes for Transparency */
+  .transparency-left { display: flex; flex-direction: column; align-items: center; width: 100%; }
+  .transparency-middle { flex-direction: column; width: 100%; gap: 30px; }
+  .transparency-graphic img { transform: scale(1); max-width: 220px; }
+  .transparency-list { width: 100%; max-width: 400px; margin: 0 auto; }
+  .t-text p { white-space: normal; } /* Prevents horizontal overflow */
+  .transparency-right { width: 100%; max-width: 400px; margin: 0 auto; }
+  
+  .guidance-empty {
+    display: none;
+  }
+}
+
+/* --- LARGE MOBILE / TABLET (max-width: 768px) --- */
+@media (max-width: 768px) {
+  /* Typography */
+  .hero-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+  .hero-title .light-text { font-size: clamp(1.3rem, 5vw, 1.6rem); }
+  .hero-subtitle { font-size: clamp(0.75rem, 3.5vw, 0.9rem); }
+  
+  h2, .section-title, .guidance-title, .process-title, .solutions-title, 
+  .products-title, .transparency-title, .impact-title, .why-us-title, .faq-title {
+    font-size: clamp(1.4rem, 5vw, 1.7rem) !important;
+  }
+
+  p, .problem-desc, .guidance-desc, .process-desc, .tech-desc, .why-us-desc, .trust-desc, .transparency-desc {
+    font-size: clamp(0.75rem, 3.5vw, 0.85rem) !important;
+  }
+
+  /* Prevent descriptions from hard-breaking on mobile, let them fill width naturally */
+  .problem-desc br, .guidance-desc br, .process-desc br, .tech-desc br, 
+  .why-us-desc br, .trust-desc br, .transparency-desc br, .solutions-desc br, 
+  .impact-desc br, p br {
+    display: none;
+  }
+
+  /* Buttons */
+  .hero-actions { flex-direction: column; width: 100%; gap: 15px; }
+  .hero-actions a, .hero-actions button { width: 100%; max-width: 100%; justify-content: center; }
+  
+  /* Layout adjustments */
+  .hero-snap-wrapper { height: auto; min-height: 100vh; }
+  .hero-section { position: relative; overflow: visible; padding: 100px 0 60px; min-height: auto; }
+  .problem-section, .guidance-section, .transparency-section, .process-section, 
+  .solutions-section, .products-section, .impact-section, .tech-stack-section, 
+  .why-us-section, .our-trust-section, .faq-section, .cta-section {
+    padding: 60px 0 !important;
+    min-height: auto !important;
+  }
+  
+  /* Grids to single column for most sections */
+  .guidance-cards, .transparency-cards, .process-cards, 
+  .solutions-cards, .products-grid, .impact-metrics, .why-us-grid, .our-trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Compact Transparency Section */
+  .transparency-container { gap: 20px; text-align: center; }
+  .transparency-left { width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .transparency-left .section-label { margin-bottom: 12px !important; align-self: flex-start; text-align: left; }
+  .transparency-left .section-title { font-size: 1.6rem !important; margin-bottom: 12px !important; margin-top: 8px !important; }
+  .transparency-desc { margin-bottom: 0; margin-top: 0; font-size: 0.85rem !important; line-height: 1.4; max-width: 100%; min-width: 0; }
+  .transparency-cta-btn { margin-top: 16px !important; padding: 10px 24px !important; font-size: 0.85rem; }
+  
+  /* Transparency Middle (Graphic + List) */
+  .transparency-middle { 
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 0;
+  }
+  .transparency-graphic { 
+    position: absolute; 
+    top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%; height: 100%; 
+    z-index: 0; 
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .transparency-graphic img { 
+    transform: scale(1.2) !important; 
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+  }
+  .transparency-list { 
+    position: relative; 
+    z-index: 1; 
+    width: 100%;
+    gap: 12px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .t-list-item { 
+    width: 100%; 
+    max-width: 320px;
+    background: rgba(255, 255, 255, 0.7); 
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 12px;
+    border-radius: 12px;
+    gap: 12px; 
+    text-align: left; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  }
+  .t-icon-box { width: 32px; height: 32px; flex: 0 0 32px; }
+  .t-icon-box svg { width: 16px; height: 16px; }
+  .t-text h4 { font-size: 0.85rem; }
+  .t-text p { font-size: 0.65rem; white-space: normal; line-height: 1.2; }
+
+  /* Transparency Right (Security Card) */
+  .transparency-right { width: 100%; max-width: 100%; flex: auto; }
+  .security-card { padding: 16px; border-radius: 16px; }
+  .security-card-header { margin-bottom: 16px; justify-content: center; }
+  .security-card-header h3 { font-size: 1rem; }
+  .security-checklist { gap: 8px; margin-bottom: 20px; align-items: flex-start; max-width: max-content; margin-left: auto; margin-right: auto; }
+  .security-checklist li { font-size: 0.75rem; gap: 8px; }
+
+  /* Sleek Horizontal Solutions Cards for Mobile */
+  .solutions-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  .solutions-header { margin: 0 auto; display: flex; flex-direction: column; align-items: center; max-width: 100%; }
+  .solutions-desc { margin-bottom: 24px; }
+  .solutions-grid { grid-template-columns: 1fr; gap: 12px; width: 100%; }
+  
+  .solution-card { 
+    flex-direction: row; 
+    align-items: center; 
+    padding: 16px 12px; 
+    text-align: left; 
+    border-radius: 12px;
+  }
+  .solution-content { 
+    flex: 1; 
+    padding: 0; 
+    padding-right: 12px; 
+  }
+  .solution-card-header { 
+    justify-content: flex-start; 
+    margin-bottom: 6px; 
+    gap: 10px;
+  }
+  .solution-icon-wrapper { 
+    margin: 0; 
+    width: 28px; 
+    height: 28px; 
+  }
+  .solution-card h3 { 
+    font-size: 0.95rem; 
+    margin: 0; 
+  }
+  .solution-card p { 
+    font-size: 0.75rem; 
+    margin-bottom: 8px; 
+    line-height: 1.4;
+  }
+  .link-arrow-small { 
+    margin-top: 0; 
+    font-size: 0.75rem; 
+  }
+  .solution-graphic { 
+    flex: 0 0 70px; 
+    height: 70px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+  }
+  .solution-graphic img { 
+    width: 100%; 
+    height: auto; 
+    max-width: 70px; 
+    margin: 0; 
+    mask-image: none; 
+    -webkit-mask-image: none; 
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+  }
+  
+  /* Ultra-Compact Products Section */
+  .products-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .products-left { flex: none; width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .products-left .section-label { margin-bottom: 12px !important; align-self: flex-start; text-align: left; }
+  .products-left .section-title { font-size: 1.4rem !important; margin-bottom: 12px !important; margin-top: 8px !important; }
+  .products-desc { margin-bottom: 0; margin-top: 0; font-size: 0.8rem !important; line-height: 1.4; }
+  .products-explore-btn { margin-top: 16px !important; padding: 10px 24px !important; font-size: 0.85rem; }
+  .products-filters { justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; margin-top: 16px; }
+  .filter-btn { padding: 4px 10px; font-size: 0.7rem; }
+  .products-grid { gap: 12px; }
+  
+  .product-card { border-radius: 12px; }
+  .product-image { height: 120px; }
+  .product-content { padding: 12px; text-align: left; }
+  .product-title-row h3 { font-size: 0.95rem; }
+  .product-subtitle { font-size: 0.75rem; margin-bottom: 6px; }
+  .product-desc { font-size: 0.75rem; line-height: 1.3; margin-bottom: 10px; }
+  .product-tags { gap: 4px; margin-bottom: 10px; }
+  .product-tags .tag { font-size: 0.6rem; padding: 3px 6px; }
+
+  /* Compact Grid for Problem Cards */
+  .problem-container { gap: 24px; }
+  .problem-desc { margin-bottom: 24px; }
+  .problem-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .problem-card {
+    padding: 16px 12px;
+  }
+  .problem-card .card-icon {
+    width: 32px; height: 32px; font-size: 0.9rem; margin-bottom: 12px; margin-left: auto; margin-right: auto;
+  }
+  .problem-card h3 {
+    font-size: clamp(0.8rem, 3.5vw, 0.9rem); margin-bottom: 8px; text-align: center;
+  }
+  .problem-card p {
+    font-size: clamp(0.7rem, 3vw, 0.75rem) !important; text-align: center;
+  }
+
+  /* Tech Stack Grid */
+  .tech-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+
+  /* Ultra-Compact Guidance FAQ */
+  .faq-list { padding: 12px; gap: 6px; }
+  .faq-header { font-size: 0.85rem; margin-bottom: 8px; text-align: center; }
+  .faq-item { padding: 6px 10px; border-radius: 8px; }
+  .faq-icon-wrapper { width: 24px; height: 24px; margin-right: 10px; border-radius: 4px; }
+  .faq-icon { font-size: 0.65rem; }
+  .faq-item .faq-question { font-size: 0.75rem; }
+  .faq-item-answer { font-size: 0.7rem; padding-top: 6px; }
+
+  /* Compact Banner Section */
+  .banner-section { padding: 20px 0 !important; }
+  .banner-container { gap: 8px; }
+  .banner-title { font-size: 1.1rem; }
+  .banner-code { font-size: 0.65rem; padding-left: 8px; border-left-width: 1px; }
+
+  /* Tech Section Mobile Fixes */
+  .tech-left { text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .tech-left .section-label { justify-content: center; }
+  .tech-right { flex-direction: column; width: 100%; }
+  .tech-tabs { flex-direction: row; flex-wrap: wrap; width: 100%; justify-content: center; }
+  .tech-tab { flex: 1 1 calc(50% - 12px); justify-content: center; text-align: center; font-size: 0.75rem; padding: 8px; }
+  .tech-tab .arrow { display: none; }
+  .tech-icons-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tech-content-area { padding: 20px 15px; }
+
+  /* Reduce Vertical Spacing for Process and Tech */
+  .process-header .section-title, .tech-left .section-title { margin-bottom: 8px !important; margin-top: 4px !important; }
+  .process-desc, .tech-desc { margin-bottom: 8px !important; margin-top: 0 !important; }
+  .process-header .btn-primary, .tech-left .btn-primary { margin-top: 12px !important; }
+
+  /* Process Steps vertical alignment */
+  .process-step::after { display: none; } /* Hide horizontal arrows/lines */
+  
+  .process-header .section-label { justify-content: center; text-align: center; margin-bottom: 12px !important; }
+  .process-content-box { padding: 20px 12px; border-radius: 16px; width: 100vw; margin-left: -20px; box-shadow: none; }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 6px;
+    padding-bottom: 0;
+  }
+  .step-item {
+    flex: none;
+    padding: 8px 4px;
+    background: #fdfdfd;
+    border: 1px solid #f1f5f9;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .step-item p { display: none; }
+  .step-item .step-num { font-size: 0.6rem; margin-bottom: 0; opacity: 0.7; }
+  .step-item .step-icon { width: 32px; height: 32px; margin-bottom: 0; }
+  .step-item .step-icon svg { width: 14px; height: 14px; }
+  .step-item h4 { font-size: 0.65rem; margin-bottom: 0; text-align: center; }
+  .process-track { display: none; }
+  
+  .process-roles-container { flex-direction: row; gap: 8px; padding: 12px; align-items: stretch; justify-content: center; }
+  .role-card { flex-direction: column; gap: 6px; text-align: center; flex: 1; justify-content: flex-start; }
+  .role-card.your-role, .role-card.our-role { padding-left: 0; }
+  .role-icon { width: 28px; height: 28px; margin: 0 auto; font-size: 0.7rem !important; }
+  .role-icon svg { width: 12px; height: 12px; }
+  .role-card h4 { font-size: 0.65rem; margin-bottom: 2px; }
+  .role-card p { font-size: 0.55rem; line-height: 1.2; }
+  .role-divider { width: 1px; height: auto; background: #e2e8f0; }
+}
+
+/* --- SMALL MOBILE (max-width: 480px) --- */
+@media (max-width: 480px) {
+  /* Tech Stack Grid on small phones */
+  .tech-grid { grid-template-columns: repeat(2, 1fr); }
+  
+  .container { padding: 0 16px; }
+}
+
+@media (max-width: 768px) { html { scroll-snap-type: none !important; } }
+
+/* --- Extra Layout Fixes for missed containers --- */
+@media (max-width: 1024px) {
+  .banner-container, 
+  .case-studies-container, 
+  .process-container,
+  .tech-container, 
+  .faq-cta-container,
+  .trust-container,
+  .why-us-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .case-studies-section, 
+  .tech-section, 
+  .faq-cta-section {
+    padding: 60px 0 !important;
+    min-height: auto !important;
+  }
+
+  /* Case Studies Mobile Slider */
+  .case-studies-slider {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100vw;
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-right: 40px; /* Extra padding so the second card peeks out */
+    padding-bottom: 20px;
+  }
+  .case-studies-slider::-webkit-scrollbar { display: none; }
+  .case-card { 
+    flex: 0 0 calc(100vw - 40px); 
+    scroll-snap-align: center; 
+  }
+  
+  /* Bring nav buttons inside the screen bounds on mobile */
+  .slider-nav-right { right: -10px; width: 40px; height: 40px; }
+  .slider-nav-left { left: -10px; width: 40px; height: 40px; }
+  
+  /* Why Us Mobile */
+  .why-us-left .section-title { margin-bottom: 8px !important; }
+  .why-us-desc { margin-bottom: 12px !important; }
+  .why-us-left .btn-primary { margin-top: 12px !important; }
+  .why-us-glass-container { padding: 16px; margin-top: 10px; }
+  .why-us-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+  .why-card { padding: 12px 8px; }
+  .why-icon { width: 32px; height: 32px; margin-bottom: 8px; margin-left: auto; margin-right: auto; }
+  .why-icon svg { width: 16px; height: 16px; }
+  .why-card h4 { font-size: 0.75rem; text-align: center; }
+  .why-card p { font-size: 0.65rem; text-align: center; line-height: 1.3; }
+  .why-quote { grid-column: span 2; justify-content: center; padding: 10px 0 0 0; }
+  .why-quote p { font-size: 1.1rem; }
+
+  /* Trust Mobile */
+  .trust-left .section-title { margin-bottom: 8px !important; }
+  .trust-desc { margin-bottom: 12px !important; }
+  .trust-left .btn-primary { margin-top: 8px !important; width: auto; font-size: 0.7rem; padding: 10px 20px; }
+  .trust-middle { padding: 0; gap: 16px; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
+  .stat-item { padding: 8px; }
+  .highlighted-stat { padding: 8px; }
+  .stat-item h3 { font-size: 1.4rem; margin-bottom: 2px; }
+  .stat-item p { font-size: 0.55rem; line-height: 1.1; }
+  .client-types { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; width: 100%; justify-items: center; }
+  .c-type { gap: 4px; }
+  .c-type span { font-size: 0.45rem; letter-spacing: 0; text-align: center; }
+  .c-icon { width: 20px; height: 20px; margin-bottom: 2px; }
+  .c-icon svg { width: 14px; height: 14px; }
+  .trust-right { width: 100%; margin-top: 10px; }
+  .testimonial-card { padding: 16px; margin: 0; }
+  .testimonial-text { font-size: 0.8rem; margin: 12px 0; }
+
+  /* FAQ CTA Mobile */
+  .faq-left .section-title { margin-bottom: 8px !important; }
+  .faq-desc { margin-bottom: 12px !important; font-size: 0.7rem !important; }
+  .faq-desc br { display: none; }
+  .faq-left .btn-primary { margin-top: 8px !important; width: auto; font-size: 0.7rem; padding: 10px 20px; }
+  .faq-list-clean { padding: 10px 12px; border-radius: 12px; }
+  .faq-clean-item { padding: 12px 0; }
+  .faq-clean-item .faq-question { font-size: 0.75rem; }
+  .faq-plus { font-size: 1rem; }
+  .faq-answer { font-size: 0.7rem; }
+
+  /* Ready to Start (CTA Card) */
+  .cta-right { width: 100%; margin-top: 10px; }
+  .cta-card { padding: 24px 16px; border-radius: 16px; text-align: center; align-items: center; }
+  .cta-card h3 { font-size: 1.3rem; margin: 10px 0; }
+  .cta-card p { font-size: 0.75rem; margin-bottom: 16px; line-height: 1.4; }
+  .cta-card br { display: none; }
+  .cta-card .btn-primary { font-size: 0.75rem; padding: 10px 24px; width: auto; }
+
+}
+
+/* --- SHORT SCREENS (Landscape Mobile) --- */
+@media (max-height: 600px) {
+  .hero-snap-wrapper { height: auto !important; min-height: 100vh !important; }
+  .hero-section { position: relative !important; overflow: visible !important; min-height: 100vh !important; padding: 100px 0 60px !important; }
+}
