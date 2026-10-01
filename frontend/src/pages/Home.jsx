@@ -230,9 +230,77 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.scrollSnapType = 'y mandatory';
+    document.documentElement.classList.add('home-page-snap');
+
+    let isTransitioning = false;
+    let startY = 0;
+
+    const getProblemTop = () => {
+      if (problemSectionRef.current) {
+        return problemSectionRef.current.offsetTop;
+      }
+      return window.innerHeight;
+    };
+
+    const triggerTransition = (targetY) => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 700);
+    };
+
+    const handleWheel = (e) => {
+      const currentScroll = window.scrollY;
+      const problemTop = getProblemTop();
+
+      // In Hero section and scrolling down
+      if (currentScroll < 40 && e.deltaY > 5) {
+        e.preventDefault();
+        triggerTransition(problemTop);
+      }
+      // At top of Problem section and scrolling up
+      else if (currentScroll > 40 && currentScroll <= problemTop + 30 && e.deltaY < -5) {
+        if (currentScroll <= problemTop + 15) {
+          e.preventDefault();
+          triggerTransition(0);
+        }
+      }
+    };
+
+    const handleTouchStart = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        startY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchEnd = (e) => {
+      if (!e.changedTouches || e.changedTouches.length === 0) return;
+      const endY = e.changedTouches[0].clientY;
+      const deltaY = startY - endY; // positive = scroll down (swipe up)
+      const currentScroll = window.scrollY;
+      const problemTop = getProblemTop();
+
+      // At top of Hero section, swiping up slightly (deltaY > 15)
+      if (currentScroll < 40 && deltaY > 15) {
+        triggerTransition(problemTop);
+      }
+      // At top of Problem section, swiping down slightly (deltaY < -15)
+      else if (currentScroll > 40 && currentScroll <= problemTop + 40 && deltaY < -15) {
+        triggerTransition(0);
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+
     return () => {
-      document.documentElement.style.scrollSnapType = '';
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+      document.documentElement.classList.remove('home-page-snap');
     };
   }, []);
 
@@ -246,12 +314,12 @@ const Home = () => {
             <div className="container hero-container">
               <div className="hero-content">
                 <div className="breadcrumb">
-                  IDEAS / TECHNOLOGY / <span className="gold-text">REAL SOLUTIONS</span>
+                  IDEAS / TECHNOLOGY / <span className="gold-text">SOLUTIONS</span>
                 </div>
                 <h1 className="hero-title">
                   PATHMAKERS<br />
                   <span className="gold-text">TECHNOLOGIES</span><br />
-                  <span className="light-text">FREELANCERS</span>
+                  {/* <span className="light-text">FREELANCERS</span> */}
                 </h1>
                 <p className="hero-subtitle">
                   We don't just build <strong>software</strong>. We find the right path for your business — with technology, strategy and a deep understanding of what really matters.

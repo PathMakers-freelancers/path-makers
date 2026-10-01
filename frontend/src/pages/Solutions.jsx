@@ -161,7 +161,7 @@ const Solutions = () => {
     <div className="solutions-page">
       {/* 01 - Hero Section */}
       <div className="hero-snap-wrapper">
-        <section className="hero-section" id="solutions-hero">
+        <section className="hero-section s-hero" id="solutions-hero">
           <div className="hero-bg-image" style={{ backgroundImage: `url(${images.heroBg})`, WebkitMaskImage: 'none', maskImage: 'none' }}></div>
           <div className="hero-bg-gradient" style={{ background: 'linear-gradient(to right, rgba(10,12,16,1) 0%, rgba(10,12,16,0.85) 45%, transparent 100%)' }}></div>
           <div className="container hero-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%' }}>
@@ -191,7 +191,7 @@ const Solutions = () => {
               
               <div className="hero-actions" style={{ justifyContent: 'flex-start', marginTop: '0', gap: '20px' }}>
                 <a href="#four-ways" className="btn-primary" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%)', color: '#000', fontWeight: 700, borderColor: 'transparent', padding: '14px 32px', borderRadius: '6px' }}>Get Started</a>
-                <a href="#problem-discovery" className="btn-outline" style={{ color: '#fff', borderColor: 'rgba(212,175,55,0.5)', padding: '14px 32px', borderRadius: '6px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <a href="https://wa.me/917200754566?text=Hello%20PathMakers%20and%20Team%2C%20I%20would%20like%20to%20Connect%20for%20a%20projects%20discussion." target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ color: '#fff', borderColor: 'rgba(212,175,55,0.5)', padding: '14px 32px', borderRadius: '6px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '8px' }}>
                   Book a call &rarr;
                 </a>
               </div>

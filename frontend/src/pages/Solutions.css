@@ -564,14 +564,15 @@
   p { font-size: 0.9rem !important; line-height: 1.5 !important; max-width: 100% !important; }
 
   /* 01 - Hero Section */
-  .hero-snap-wrapper { height: auto !important; }
-  .hero-section { padding-top: 100px !important; padding-bottom: 50px !important; min-height: auto !important; }
-  .hero-container { flex-direction: column !important; text-align: left !important; gap: 20px !important; }
-  .hero-content { max-width: 100% !important; text-align: left !important; margin: 0 !important; padding: 0 !important; }
-  .hero-title { font-size: clamp(2.5rem, 8vw, 3.2rem) !important; margin-bottom: 10px !important; }
-  .hero-subtitle { font-size: clamp(1.4rem, 5vw, 1.8rem) !important; margin-bottom: 20px !important; }
-  .hero-actions { justify-content: flex-start !important; flex-direction: column !important; gap: 15px !important; width: 100% !important; }
-  .hero-actions a, .hero-actions button { width: 100% !important; justify-content: center !important; text-align: center !important; }
+  .s-hero .hero-snap-wrapper, #solutions-hero .hero-snap-wrapper { height: auto !important; }
+  .s-hero.hero-section, #solutions-hero { padding-top: 100px !important; padding-bottom: 50px !important; min-height: auto !important; }
+  .s-hero .hero-container, #solutions-hero .hero-container { flex-direction: column !important; text-align: left !important; align-items: flex-start !important; gap: 20px !important; }
+  .s-hero .hero-content, #solutions-hero .hero-content { max-width: 100% !important; text-align: left !important; align-items: flex-start !important; margin: 0 !important; padding: 0 !important; }
+  .s-hero .hero-title, #solutions-hero .hero-title { font-size: clamp(2.3rem, 7.5vw, 3.2rem) !important; margin-bottom: 15px !important; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important; text-align: left !important; }
+  .s-hero .hero-subtitle, #solutions-hero .hero-subtitle, .s-hero-subtitle { font-size: clamp(1.15rem, 4.5vw, 1.5rem) !important; margin-bottom: 25px !important; text-align: left !important; margin-left: 0 !important; margin-right: auto !important; width: 100% !important; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important; }
+  .s-hero .breadcrumb, #solutions-hero .breadcrumb { text-shadow: none !important; text-align: left !important; }
+  .s-hero .hero-actions, #solutions-hero .hero-actions { justify-content: flex-start !important; flex-direction: column !important; gap: 15px !important; width: 100% !important; align-items: flex-start !important; }
+  .s-hero .hero-actions a, #solutions-hero .hero-actions a, .s-hero .hero-actions button, #solutions-hero .hero-actions button { width: 100% !important; justify-content: center !important; text-align: center !important; }
   
   /* 02 - Problem Section */
   .s-problem { padding-top: 50px !important; }

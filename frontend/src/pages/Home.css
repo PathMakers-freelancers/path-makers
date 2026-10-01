@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap');
 
-.hero-snap-wrapper {
-  height: 100vh;
-  width: 100%;
-  scroll-snap-align: start;
+html.home-page-snap {
+  scroll-behavior: smooth;
 }
 
-.normal-scroll-wrapper {
-  scroll-snap-align: start;
+.hero-snap-wrapper {
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
 }
+
 
 /* Hero Section */
 .hero-section {
@@ -16,12 +17,15 @@
   top: 0;
   padding: 80px 0 40px;
   overflow: hidden;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   background-color: #FAF9F6;
   isolation: isolate;
   z-index: 0; /* Keep it below next sections */
+  box-sizing: border-box;
 }
 
 .hero-bg-image {
@@ -143,9 +147,9 @@
   position: relative;
   overflow: hidden;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
-  scroll-snap-align: start;
   z-index: 2; /* Slides over sticky hero */
   box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.05); /* Adds a subtle shadow to emphasize the slide-over */
 }
@@ -2397,7 +2401,6 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  scroll-snap-align: start;
 }
 .guidance-container {
   width: 100%;
@@ -2424,16 +2427,16 @@
   /* Layout */
   .container { padding: 0 20px; }
   
-  /* Hero */
-  .hero-container { flex-direction: column; text-align: center; gap: 30px; }
-  .hero-content { margin: 0 auto; display: flex; flex-direction: column; align-items: center; max-width: 100%; }
-  .hero-subtitle { margin-left: auto; margin-right: auto; max-width: 600px; }
+  /* Hero (Scoped to Home Page) */
+  .home-page-snap .hero-container { flex-direction: column; text-align: center; gap: 30px; }
+  .home-page-snap .hero-content { margin: 0 auto; display: flex; flex-direction: column; align-items: center; max-width: 100%; }
+  .home-page-snap .hero-subtitle { margin-left: auto; margin-right: auto; max-width: 600px; }
   
-  .hero-bg-image {
+  .home-page-snap .hero-bg-image {
     background-position: center center;
   }
   
-  .hero-bg-gradient { 
+  .home-page-snap .hero-bg-gradient { 
     background: radial-gradient(ellipse at center 35%, rgba(250, 249, 246, 0.95) 0%, rgba(250, 249, 246, 0.85) 45%, rgba(250, 249, 246, 0) 75%); 
     backdrop-filter: none; 
     -webkit-backdrop-filter: none;
@@ -2441,10 +2444,12 @@
     -webkit-mask-image: none; 
   }
   
-  .hero-title, .hero-subtitle, .breadcrumb {
+  .home-page-snap .hero-title, 
+  .home-page-snap .hero-subtitle, 
+  .home-page-snap .breadcrumb {
     text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 1);
   }
-  .hero-tags { justify-content: center; text-align: center; }
+  .home-page-snap .hero-tags { justify-content: center; text-align: center; }
 
   /* Problem Section */
   .problem-container { flex-direction: column; text-align: center; gap: 40px; }
@@ -2481,16 +2486,17 @@
 /* --- LARGE MOBILE / TABLET (max-width: 768px) --- */
 @media (max-width: 768px) {
   /* Typography */
-  .hero-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
-  .hero-title .light-text { font-size: clamp(1.3rem, 5vw, 1.6rem); }
-  .hero-subtitle { font-size: clamp(0.75rem, 3.5vw, 0.9rem); }
+  .hero-title { font-size: clamp(1.35rem, 6vw, 1.7rem); margin-bottom: 12px; }
+  .hero-title .light-text { font-size: clamp(1rem, 4.5vw, 1.3rem); }
+  .hero-subtitle { font-size: 0.78rem !important; line-height: 1.5 !important; margin-bottom: 20px !important; max-width: 100% !important; }
+  .breadcrumb { font-size: 0.6rem; letter-spacing: 0.1em; margin-bottom: 12px; }
   
   h2, .section-title, .guidance-title, .process-title, .solutions-title, 
   .products-title, .transparency-title, .impact-title, .why-us-title, .faq-title {
     font-size: clamp(1.4rem, 5vw, 1.7rem) !important;
   }
 
-  p, .problem-desc, .guidance-desc, .process-desc, .tech-desc, .why-us-desc, .trust-desc, .transparency-desc {
+  p:not(.hero-subtitle), .problem-desc, .guidance-desc, .process-desc, .tech-desc, .why-us-desc, .trust-desc, .transparency-desc {
     font-size: clamp(0.75rem, 3.5vw, 0.85rem) !important;
   }
 
@@ -2506,9 +2512,31 @@
   .hero-actions a, .hero-actions button { width: 100%; max-width: 100%; justify-content: center; }
   
   /* Layout adjustments */
-  .hero-snap-wrapper { height: auto; min-height: 100vh; }
-  .hero-section { position: relative; overflow: visible; padding: 100px 0 60px; min-height: auto; }
-  .problem-section, .guidance-section, .transparency-section, .process-section, 
+  .hero-snap-wrapper {
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+  }
+  .hero-section {
+    position: relative !important;
+    overflow: hidden !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    padding: 75px 16px 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  .problem-section {
+    min-height: 100dvh !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .guidance-section, .transparency-section, .process-section, 
   .solutions-section, .products-section, .impact-section, .tech-stack-section, 
   .why-us-section, .our-trust-section, .faq-section, .cta-section {
     padding: 60px 0 !important;
@@ -2775,7 +2803,7 @@
   .container { padding: 0 16px; }
 }
 
-@media (max-width: 768px) { html { scroll-snap-type: none !important; } }
+/* Mobile scroll snap enabled for hero transition */
 
 /* --- Extra Layout Fixes for missed containers --- */
 @media (max-width: 1024px) {
