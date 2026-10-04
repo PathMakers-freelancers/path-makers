@@ -99,7 +99,6 @@ const Solutions = () => {
 
   useEffect(() => {
     const handleInvestmentScroll = () => {
-      if (isMobile) return;
       if (!investmentScrollRef.current) return;
       const rect = investmentScrollRef.current.getBoundingClientRect();
       const scrollableDistance = rect.height - window.innerHeight;
@@ -134,35 +133,22 @@ const Solutions = () => {
       window.removeEventListener('scroll', handleInvestmentScroll);
       window.removeEventListener('resize', handleInvestmentScroll);
     };
-  }, [isMobile]);
+  }, []);
 
   const getInvestmentStickyContainerStyle = () => {
-    if (isMobile) {
-      return {
-        position: 'relative',
-        height: 'auto',
-        paddingTop: '40px',
-        padding: '15px',
-        width: '100%',
-        overflow: 'visible',
-        backgroundColor: '#FDFBF7',
-        display: 'flex',
-        alignItems: 'flex-start'
-      };
-    }
-
     const baseStyle = {
       width: '100%',
       height: '100vh',
+      height: '100dvh',
       overflow: 'hidden',
       backgroundColor: '#FDFBF7',
       backgroundImage: `url(${solutionsBgImg})`,
-      backgroundPosition: 'right center',
-      backgroundSize: 'auto 100%',
+      backgroundPosition: isMobile ? 'center' : 'right center',
+      backgroundSize: isMobile ? 'cover' : 'auto 100%',
       backgroundRepeat: 'no-repeat',
       display: 'flex',
       alignItems: 'center',
-      paddingTop: '40px',
+      paddingTop: isMobile ? '10px' : '40px',
       boxShadow: 'inset 0 20px 30px -10px rgba(0,0,0,0.02)'
     };
 
@@ -926,7 +912,7 @@ const Solutions = () => {
 
 
       {/* 14 - Cost / Scope (Animated Sticky Section) */}
-      <section className="s-cost-section" ref={investmentScrollRef} style={{ position: 'relative', width: '100%', height: isMobile ? 'auto' : '550vh', background: '#FDFBF7' }}>
+      <section className="s-cost-section" ref={investmentScrollRef} style={{ position: 'relative', width: '100%', height: isMobile ? '350vh' : '550vh', background: '#FDFBF7' }}>
         <div style={getInvestmentStickyContainerStyle()}>
           {/* Gradient Overlay for Left Side */}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #FDFBF7 40%, rgba(253,251,247,0.95) 65%, transparent 100%)' }}></div>
@@ -936,11 +922,12 @@ const Solutions = () => {
             display: 'flex', 
             flexWrap: isMobile ? 'nowrap' : 'wrap', 
             flexDirection: isMobile ? 'column' : 'row',
-            alignItems: isMobile ? 'flex-start' : 'center', 
-            width: isMobile ? '100%' : '92%', 
+            alignItems: 'center', 
+            justifyContent: isMobile ? 'center' : 'space-between',
+            width: isMobile ? '95%' : '92%', 
             maxWidth: '1700px', 
             margin: '0 auto', 
-            gap: isMobile ? '12px' : '40px',
+            gap: isMobile ? '8px' : '40px',
             height: isMobile ? '100%' : 'auto'
           }}>
             
@@ -949,17 +936,18 @@ const Solutions = () => {
               flex: isMobile ? '0 0 auto' : '1 1 45%', 
               minWidth: isMobile ? '0' : '450px', 
               maxWidth: isMobile ? '100%' : '500px',
-              width: isMobile ? '100%' : undefined
+              width: isMobile ? '100%' : undefined,
+              textAlign: isMobile ? 'center' : 'left'
             }}>
-              <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.15em', color: '#9CA3AF', textTransform: 'uppercase', marginBottom: '15px' }}>OUR APPROACH</div>
-              <h2 style={{ fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)', fontWeight: 800, color: '#111827', marginBottom: '15px', lineHeight: '1.2' }}>
+              <div style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.15em', color: '#9CA3AF', textTransform: 'uppercase', marginBottom: isMobile ? '4px' : '15px' }}>OUR APPROACH</div>
+              <h2 style={{ fontSize: isMobile ? '1.25rem' : 'clamp(1.75rem, 2.5vw, 2.25rem)', fontWeight: 800, color: '#111827', marginBottom: isMobile ? '6px' : '15px', lineHeight: '1.2' }}>
                 THE RIGHT SOLUTION HAS<br/><span style={{ color: '#B98031' }}>THE RIGHT INVESTMENT.</span>
               </h2>
-              <p style={{ fontSize: '0.95rem', color: '#4B5563', lineHeight: '1.6', marginBottom: '40px' }}>
+              <p style={{ fontSize: '0.95rem', color: '#4B5563', lineHeight: '1.6', marginBottom: '40px', display: isMobile ? 'none' : 'block' }}>
                 There is no meaningful single price for software until we<br/>understand what needs to be built, connected or changed.
               </p>
               
-              <div style={{ background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: '16px', padding: '25px', boxShadow: '0 15px 30px rgba(0,0,0,0.02)', marginBottom: '40px', display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+              <div style={{ background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: '16px', padding: '25px', boxShadow: '0 15px 30px rgba(0,0,0,0.02)', marginBottom: '40px', display: isMobile ? 'none' : 'flex', gap: '20px', alignItems: 'flex-start' }}>
                 <div style={{ flex: '0 0 45px', height: '45px', border: '2px solid #D4AF37', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#B98031', background: '#FDFBF7' }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><circle cx="10" cy="13" r="2"></circle><line x1="11.5" y1="14.5" x2="14" y2="17"></line></svg>
                 </div>
@@ -973,31 +961,30 @@ const Solutions = () => {
                 </div>
               </div>
               
-              <button style={{ background: 'linear-gradient(90deg, #B98031, #D4AF37)', color: '#fff', border: 'none', padding: '14px 28px', borderRadius: '40px', fontWeight: 600, fontSize: '0.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', boxShadow: '0 10px 20px rgba(212,175,55,0.3)' }}>
+              <button style={{ background: 'linear-gradient(90deg, #B98031, #D4AF37)', color: '#fff', border: 'none', padding: '14px 28px', borderRadius: '40px', fontWeight: 600, fontSize: '0.9rem', cursor: 'pointer', display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '10px', boxShadow: '0 10px 20px rgba(212,175,55,0.3)' }}>
                 Discuss Your Requirement &rarr;
               </button>
             </div>
   
             {/* Right Side: The Wheel Infographic */}
             <div className="s-cost-right" style={{ 
-              flex: isMobile ? '1 1 100%' : '1 1 50%', 
+              flex: isMobile ? '0 0 auto' : '1 1 50%', 
               minWidth: isMobile ? '0' : '400px', 
               maxWidth: isMobile ? '100%' : '480px', 
               width: isMobile ? '100%' : undefined,
               position: 'relative', 
               display: 'flex', 
-              alignItems: isMobile ? 'flex-start' : 'center', 
+              alignItems: 'center', 
               justifyContent: 'center',
               overflow: 'visible'
             }}>
               <div className="s-cost-wheel" style={{ 
                 position: 'relative', 
-                width: isMobile ? '480px' : '100%', 
-                maxWidth: isMobile ? 'none' : '480px', 
+                width: isMobile ? '330px' : '100%', 
+                maxWidth: isMobile ? '330px' : '480px', 
                 aspectRatio: '1/1',
-                transform: isMobile ? 'scale(0.55)' : 'none',
-                transformOrigin: isMobile ? 'top center' : 'center center',
-                marginLeft: isMobile ? 'calc(50% - 240px)' : '0'
+                transform: 'none',
+                margin: '0 auto'
               }}>
                 
                 {/* 3D Wheel SVG */}
