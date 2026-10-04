@@ -45,7 +45,10 @@ const validRoutes = [
 
 function AppContent() {
   const location = useLocation();
-  const is404Page = !validRoutes.includes(location.pathname);
+  const normalizedPath = location.pathname.length > 1 && location.pathname.endsWith('/')
+    ? location.pathname.slice(0, -1)
+    : location.pathname;
+  const is404Page = !validRoutes.includes(normalizedPath);
 
   return (
     <div className="app-container">
