@@ -7,14 +7,14 @@ const PrivacyPolicy = () => {
   useSEO({
     title: 'Privacy Policy — PathMakers Technologies',
     description:
-      'Read the Privacy Policy of PathMakers Technologies Private Limited to understand how we collect, process, store and protect your personal information.',
+      'Read the Privacy Policy of PathMakers Technologies to understand how we collect, process, store and protect your personal information.',
     canonical: 'https://pathmakerstech.in/privacy',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       name: 'Privacy Policy — PathMakers Technologies',
       url: 'https://pathmakerstech.in/privacy',
-      description: 'Privacy Policy of PathMakers Technologies Private Limited.',
+      description: 'Privacy Policy of PathMakers Technologies.',
     },
   });
 
@@ -28,7 +28,7 @@ const PrivacyPolicy = () => {
       num: '1',
       title: 'Introduction',
       paragraphs: [
-        'This Privacy Policy explains how PathMakers Technologies Private Limited collects, uses, stores, protects and otherwise processes personal information when you visit our website, contact us, purchase or use our products, request our services, or otherwise interact with us.',
+        'This Privacy Policy explains how PathMakers Technologies collects, uses, stores, protects and otherwise processes personal information when you visit our website, contact us, purchase or use our products, request our services, or otherwise interact with us.',
         'By using our website or providing information to us, you acknowledge that you have read and understood this Privacy Policy and the ways in which your information may be processed as described here.',
       ],
     },
@@ -151,7 +151,7 @@ const PrivacyPolicy = () => {
       num: '14',
       title: 'Changes to This Privacy Policy',
       paragraphs: [
-        'PathMakers Technologies Private Limited reserves the right to modify, update or replace this Privacy Policy at any time to reflect changes in our services, technology, business practices, legal requirements or applicable regulations.',
+        'PathMakers Technologies reserves the right to modify, update or replace this Privacy Policy at any time to reflect changes in our services, technology, business practices, legal requirements or applicable regulations.',
         'The updated version will be published on this page with a revised Last Updated date.',
         'Where a change is material and notification is required or reasonably appropriate, we will notify affected clients or users through email, account notifications, website notices or another reasonable communication method.',
         'Your continued use of our website or applicable services after an updated Privacy Policy becomes effective will be subject to the updated policy, to the extent permitted by applicable law.',
@@ -162,7 +162,7 @@ const PrivacyPolicy = () => {
       num: '15',
       title: 'Contact and Privacy Enquiries',
       paragraphs: [
-        'If you have questions, requests, complaints or concerns regarding this Privacy Policy or the processing of your personal information, you may contact PathMakers Technologies Private Limited through the official contact details provided on our website.',
+        'If you have questions, requests, complaints or concerns regarding this Privacy Policy or the processing of your personal information, you may contact PathMakers Technologies through the official contact details provided on our website.',
         'We will review and respond to privacy-related requests in accordance with applicable law and our reasonable verification and grievance-handling procedures.',
       ],
     },
@@ -188,7 +188,7 @@ const PrivacyPolicy = () => {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               </svg>
-              <strong>PathMakers Technologies Private Limited</strong>
+              <strong>PathMakers Technologies</strong>
             </div>
             <div className="legal-meta-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

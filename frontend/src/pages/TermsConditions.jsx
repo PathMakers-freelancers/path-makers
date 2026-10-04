@@ -7,14 +7,14 @@ const TermsConditions = () => {
   useSEO({
     title: 'Terms & Conditions — PathMakers Technologies',
     description:
-      'Read the Terms & Conditions governing your use of PathMakers Technologies Private Limited website, products, software development services, and technology solutions.',
+      'Read the Terms & Conditions governing your use of PathMakers Technologies website, products, software development services, and technology solutions.',
     canonical: 'https://pathmakerstech.in/terms',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       name: 'Terms & Conditions — PathMakers Technologies',
       url: 'https://pathmakerstech.in/terms',
-      description: 'Terms & Conditions of PathMakers Technologies Private Limited.',
+      description: 'Terms & Conditions of PathMakers Technologies.',
     },
   });
 
@@ -37,7 +37,7 @@ const TermsConditions = () => {
       num: '2',
       title: 'About PathMakers',
       paragraphs: [
-        'PathMakers Technologies Private Limited provides software products, custom software development, website development, automation, technology solutions, consulting and related digital services.',
+        'PathMakers Technologies provides software products, custom software development, website development, automation, technology solutions, consulting and related digital services.',
         'The specific scope of any product or service will depend on the applicable product description, quotation, proposal, statement of work, order or separate agreement.',
       ],
     },
@@ -56,7 +56,7 @@ const TermsConditions = () => {
       title: 'Product Licensing and Usage',
       paragraphs: [
         'Purchasing or subscribing to a PathMakers product provides you with the usage rights specifically granted for that product and selected configuration, and does not transfer ownership of the underlying software.',
-        'Unless expressly agreed otherwise in a separate written agreement, the source code, architecture, design system, proprietary logic, underlying technology, intellectual property and developer rights remain with PathMakers Technologies Private Limited.',
+        'Unless expressly agreed otherwise in a separate written agreement, the source code, architecture, design system, proprietary logic, underlying technology, intellectual property and developer rights remain with PathMakers Technologies.',
         'You may not copy, resell, redistribute, reverse engineer, reproduce, modify for unauthorised commercial redistribution or otherwise exploit PathMakers software beyond the rights granted to you.',
       ],
     },
@@ -198,7 +198,7 @@ const TermsConditions = () => {
       num: '19',
       title: 'Changes to These Terms',
       paragraphs: [
-        'PathMakers Technologies Private Limited reserves the right to modify, update or replace these Terms & Conditions at any time to reflect changes in our services, products, business practices, technology or legal requirements.',
+        'PathMakers Technologies reserves the right to modify, update or replace these Terms & Conditions at any time to reflect changes in our services, products, business practices, technology or legal requirements.',
         'The updated version will be published on this page with a revised Last Updated date.',
         'Where a change materially affects existing clients or users and notification is reasonably required, we will notify the affected parties through email, account notifications, website notices or another reasonable communication method.',
         'Continued use of the website or applicable services after the updated Terms become effective constitutes acceptance of the updated Terms to the extent permitted by applicable law.',
@@ -218,7 +218,7 @@ const TermsConditions = () => {
       num: '21',
       title: 'Contact',
       paragraphs: [
-        'If you have questions regarding these Terms & Conditions, a product, service, payment, licence, support matter or any other contractual issue, you may contact PathMakers Technologies Private Limited through the official contact details provided on our website.',
+        'If you have questions regarding these Terms & Conditions, a product, service, payment, licence, support matter or any other contractual issue, you may contact PathMakers Technologies through the official contact details provided on our website.',
       ],
     },
   ];
@@ -244,7 +244,7 @@ const TermsConditions = () => {
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
               </svg>
-              <strong>PathMakers Technologies Private Limited</strong>
+              <strong>PathMakers Technologies</strong>
             </div>
             <div className="legal-meta-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

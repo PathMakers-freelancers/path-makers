@@ -22,7 +22,7 @@ const NotFound = () => {
             <img src={pmLogo} alt="Pathmakers Logo" className="nf-logo-img" />
             <div className="nf-logo-text">
               <strong>PATHMAKERS</strong>
-              <span>TECHNOLOGIES PRIVATE LIMITED</span>
+              <span>TECHNOLOGIES</span>
             </div>
           </Link>
         </div>
