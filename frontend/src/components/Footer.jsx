@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 import pmLogoImg from '../assets/pmlogo.png';
 
@@ -24,7 +25,7 @@ const Footer = () => {
               <img src={pmLogoImg} alt="Pathmakers Logo" className="footer-logo-img" />
               <div className="footer-logo-text">
                 <strong>PATHMAKERS</strong>
-                <span>TECHNOLOGIES FREELANCERS</span>
+                <span>TECHNOLOGIES</span>
               </div>
             </div>
             <p className="company-desc">
@@ -35,7 +36,7 @@ const Footer = () => {
                 <span className="c-icon">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D13B6B" strokeWidth="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 </span>
-                <p>Pathmakers Technologies Freelancers,<br/>P.Velur, Tamil Nadu, India</p>
+                <p>P.Velur, Namakkal District,<br/>Tamil Nadu, India</p>
               </div>
               <div className="contact-item">
                 <span className="c-icon">
@@ -55,31 +56,30 @@ const Footer = () => {
           {/* Column 2: Quick Links */}
           <div className="footer-col links-col">
             <h4>Quick Links</h4>
-            <nav className="footer-nav">
-              <a href="#home">Home</a>
-              <a href="#about">About Us</a>
-              <a href="#solutions">Solutions</a>
-              <a href="#tech-stack">Tech Stack</a>
+            <nav className="footer-nav" aria-label="Quick links">
+              <Link to="/">Home</Link>
+              <Link to="/about">About Us</Link>
+              <Link to="/solutions">Solutions</Link>
+              <Link to="/lets-build">Let's Build</Link>
             </nav>
           </div>
 
           {/* Column 3: Products */}
           <div className="footer-col links-col">
             <h4>Products</h4>
-            <nav className="footer-nav">
-              <a href="https://vidhaierp.pathmakerstech.in/" target="_blank" rel="noopener noreferrer">VidhaiERP</a>
+            <nav className="footer-nav" aria-label="Products">
+              <Link to="/products/vidhai-erp">Vidhai ERP</Link>
             </nav>
           </div>
 
           {/* Column 4: Resources */}
           <div className="footer-col links-col">
             <h4>Resources</h4>
-            <nav className="footer-nav">
-              <a href="#case-studies">Case Studies</a>
-              <a href="#how-we-work">How We Work</a>
-              <a href="#why-us">Why Choose Us</a>
-              <a href="#faq">FAQ</a>
-              <a href="#support">Support</a>
+            <nav className="footer-nav" aria-label="Solutions">
+              <Link to="/solutions/custom-software">Custom Software</Link>
+              <Link to="/solutions/web-applications">Web Applications</Link>
+              <Link to="/solutions/mobile-apps">Mobile Apps</Link>
+              <Link to="/solutions/business-automation">Business Automation</Link>
             </nav>
           </div>
 
@@ -114,14 +114,14 @@ const Footer = () => {
       
       <div className="container footer-bottom">
         <div className="copyright">
-          &copy; 2026 Pathmakers Technologies Freelancers. All rights reserved.
+          &copy; 2026 PathMakers Technologies. All rights reserved.
         </div>
         <div className="footer-bottom-right">
           <div className="footer-links">
             <a href="#privacy">Privacy Policy</a>
             <a href="#terms">Terms of Service</a>
           </div>
-          <div className="footer-location">P.Velur, Tamil Nadu, India</div>
+          <div className="footer-location">Namakkal, Tamil Nadu, India</div>
         </div>
       </div>
     </footer>

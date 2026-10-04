@@ -51,7 +51,7 @@ const Header = () => {
             <img src={pmLogo} alt="Pathmakers Technologies" className="header-logo-img" />
             <div className="logo-text">
               <strong>PATHMAKERS</strong>
-              <span>TECHNOLOGIES FREELANCERS</span>
+              <span>TECHNOLOGIES</span>
             </div>
           </Link>
           <nav className="desktop-nav">
@@ -67,7 +67,7 @@ const Header = () => {
           </nav>
           
           <div className="header-actions">
-            <Link to="/build" className="btn-primary btn-sm desktop-btn">Let's Build &rarr;</Link>
+            <Link to="/lets-build" className="btn-primary btn-sm desktop-btn">Let's Build &rarr;</Link>
             <button className="hamburger-menu" onClick={toggleMobileMenu} aria-label="Toggle menu">
               <div className={`hamburger-bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
               <div className={`hamburger-bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
@@ -83,7 +83,7 @@ const Header = () => {
         <div className="mobile-menu-header">
           <div className="mobile-menu-brand">
             <img src={pmLogo} alt="Pathmakers" className="mobile-menu-logo" />
-            <strong className="mobile-menu-brand-name">PATHMAKERS</strong>
+            <strong className="mobile-menu-brand-name">PATHMAKERS TECHNOLOGIES</strong>
           </div>
           <button className="close-menu-btn" onClick={closeMobileMenu}>&times;</button>
         </div>
@@ -98,7 +98,7 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
-          <Link to="/build" className="btn-primary mobile-nav-btn" onClick={closeMobileMenu}>
+          <Link to="/lets-build" className="btn-primary mobile-nav-btn" onClick={closeMobileMenu}>
             Let's Build &rarr;
           </Link>
         </nav>

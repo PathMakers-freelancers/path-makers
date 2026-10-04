@@ -1833,11 +1833,18 @@ html.home-page-snap {
   gap: 16px;
 }
 
-.author-avatar.placeholder {
-  width: 50px;
-  height: 50px;
+.author-avatar-icon {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: #e9e9e9;
+  background: linear-gradient(135deg, #FDF6E7 0%, #FAF0D7 100%);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B98031;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(185, 128, 49, 0.15);
 }
 
 .testimonial-author h4 {

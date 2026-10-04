@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 /* ── BASE ─────────────────────────────────────────── */
 .about-page {
@@ -342,11 +342,21 @@ html.ab-snap-html {
 .ab-founder-signature {
   font-family: 'Caveat', 'Segoe Script', cursive;
   font-size: 2.2rem;
+  font-weight: 600;
   color: #D4AF37;
-  margin-top: 30px;
+  margin-top: 16px;
   margin-bottom: 2px;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 .ab-founder-role { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+
+.ab-founder-author-desktop {
+  display: block;
+}
+.ab-founder-author-mobile {
+  display: none !important;
+}
 
 /* Center founder image (Now acts as full section background) */
 .ab-founder-center {
@@ -705,13 +715,533 @@ html.ab-snap-html {
 .ab-promise-tags .ab-plus {
   color: rgba(255,255,255,0.5);
 }
+/* ====================================================
+   Comprehensive Responsive Overrides for About Page
+   ==================================================== */
+
 @media (max-width: 992px) {
-  .ab-hero { flex-direction: column; padding: 60px 30px; }
-  .ab-hero-right { align-items: flex-start; }
-  .ab-story-section { flex-direction: column; padding: 50px 30px; }
-  .ab-story-center { display: none; }
-  .ab-founder-section { flex-direction: column; }
-  .ab-founder-center { min-height: 280px; }
-  .ab-cta-section { flex-direction: column; text-align: center; padding: 40px 30px; }
-  .ab-cta-divider { width: 60px; height: 2px; margin: 20px auto; }
+  html.ab-snap-html {
+    scroll-snap-type: none !important;
+  }
+
+  .ab-animate {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .about-page section {
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+    min-height: auto !important;
+    box-sizing: border-box;
+  }
+
+  /* 01 HERO */
+  .ab-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 24px 60px;
+    min-height: auto !important;
+  }
+
+  .ab-hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(10,12,20,0.92) 0%,
+      rgba(10,12,20,0.85) 60%,
+      rgba(10,12,20,0.7) 100%
+    );
+  }
+
+  .ab-hero-left {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .ab-hero-title {
+    font-size: clamp(2rem, 7vw, 2.6rem);
+    margin-bottom: 16px;
+  }
+
+  .ab-hero-desc {
+    max-width: 100%;
+    font-size: 0.88rem;
+    margin-bottom: 24px;
+  }
+
+  .ab-hero-right {
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  /* 02 STORY */
+  .ab-story-section {
+    flex-direction: column;
+    padding: 60px 24px;
+    gap: 36px;
+    min-height: auto !important;
+  }
+
+  .ab-story-left {
+    flex: none;
+    width: 100%;
+  }
+
+  .ab-section-title {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    margin-bottom: 16px;
+  }
+
+  .ab-story-bold {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .ab-story-bold br {
+    display: none;
+  }
+
+  .ab-story-text {
+    font-size: 0.82rem;
+  }
+
+  .ab-story-italic {
+    font-size: 1.5rem;
+    margin: 14px 0 16px;
+  }
+
+  .ab-story-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .ab-story-tag {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px dashed #EDE9E0;
+    padding-top: 10px;
+    width: 100%;
+  }
+
+  .ab-story-center {
+    flex: none;
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .ab-photo-stack {
+    width: 200px;
+    height: 240px;
+  }
+
+  .ab-photo-top {
+    width: 140px;
+    height: 155px;
+  }
+
+  .ab-photo-bottom {
+    width: 135px;
+    height: 150px;
+  }
+
+  .ab-photo-label,
+  .ab-photo-label-right {
+    font-size: 0.65rem;
+  }
+
+  .ab-photo-label {
+    top: -20px;
+  }
+
+  .ab-photo-label-right {
+    bottom: -28px;
+  }
+
+  .ab-story-right {
+    flex: none;
+    width: 100%;
+    padding-top: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 14px;
+  }
+
+  .ab-milestone {
+    padding: 0;
+  }
+
+  /* 03 FOUNDER MOBILE */
+  .ab-founder-section {
+    flex-direction: column;
+    padding: 50px 20px;
+    min-height: auto !important;
+    background: #0D1117;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ab-founder-left {
+    flex: none;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ab-founder-title {
+    font-size: clamp(1.5rem, 6vw, 2.1rem);
+    text-align: center;
+  }
+
+  .ab-founder-divider {
+    margin: 12px auto 20px auto;
+  }
+
+  .ab-founder-text {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 14px auto;
+  }
+
+  .ab-founder-center {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: 220px;
+    margin: 20px auto 10px auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1.5px solid rgba(212,175,55,0.35);
+  }
+
+  .ab-founder-img-fade {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 55%,
+      rgba(13,17,23,0.85) 88%,
+      #0D1117 100%
+    );
+  }
+
+  .ab-founder-author-desktop {
+    display: none !important;
+  }
+
+  .ab-founder-author-mobile {
+    display: block !important;
+    text-align: center;
+    margin: 10px 0 24px 0;
+  }
+
+  .ab-founder-author-mobile .ab-founder-signature {
+    font-size: clamp(1.7rem, 6vw, 2.2rem) !important;
+    font-weight: 600 !important;
+    margin-top: 0;
+    margin-bottom: 2px;
+    color: #D4AF37;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .ab-founder-author-mobile .ab-founder-role {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.05em;
+  }
+
+  .ab-founder-right {
+    flex: none;
+    width: 100%;
+    max-width: 500px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 12px;
+    margin-top: 4px;
+  }
+
+  .ab-founder-stat {
+    text-align: left;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  /* 04 CTA */
+  .ab-cta-section {
+    flex-direction: column;
+    padding: 40px 24px;
+    text-align: center;
+    gap: 16px;
+    min-height: auto !important;
+  }
+
+  .ab-cta-left {
+    padding: 0;
+    width: 100%;
+  }
+
+  .ab-cta-italic {
+    font-size: 0.9rem;
+  }
+
+  .ab-cta-title {
+    font-size: clamp(1.3rem, 5vw, 1.7rem);
+  }
+
+  .ab-cta-divider {
+    width: 50px;
+    height: 2px;
+    margin: 12px auto;
+  }
+
+  .ab-cta-right {
+    width: 100%;
+  }
+
+  .ab-cta-text {
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  .ab-cta-text br {
+    display: none;
+  }
+
+  /* 05 BELIEF */
+  .ab-belief-section {
+    min-height: auto !important;
+    padding: 60px 24px;
+  }
+
+  .ab-belief-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.96) 0%,
+      rgba(255,255,255,0.92) 100%
+    );
+  }
+
+  .ab-belief-content {
+    flex-direction: column;
+    padding: 0;
+    gap: 30px;
+  }
+
+  .ab-belief-left {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .ab-belief-title {
+    font-size: clamp(1.5rem, 5.5vw, 2rem);
+    margin-bottom: 16px;
+  }
+
+  .ab-belief-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+
+  .ab-belief-subtitle br,
+  .ab-belief-text br {
+    display: none;
+  }
+
+  .ab-belief-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .ab-belief-quote-block {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .ab-belief-quote-text {
+    font-size: 1.25rem;
+  }
+
+  .ab-belief-quote-text br {
+    display: none;
+  }
+
+  .ab-belief-right {
+    padding: 0;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .ab-belief-floating-text {
+    font-size: 1.4rem;
+    text-align: center;
+    transform: rotate(-2deg);
+  }
+
+  /* 06 PROMISE */
+  .ab-promise-section {
+    min-height: auto !important;
+    padding: 60px 24px 40px;
+  }
+
+  .ab-promise-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(253,251,246,0.96) 0%,
+      rgba(253,251,246,0.92) 100%
+    );
+  }
+
+  .ab-promise-content {
+    flex-direction: column;
+    padding: 0;
+    gap: 30px;
+  }
+
+  .ab-promise-left {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .ab-promise-title {
+    font-size: clamp(1.5rem, 5.5vw, 2rem);
+    margin-bottom: 16px;
+  }
+
+  .ab-promise-title br,
+  .ab-promise-text br {
+    display: none;
+  }
+
+  .ab-promise-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .ab-promise-right {
+    padding-top: 0;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ab-promise-right-divider {
+    display: none;
+  }
+
+  .ab-promise-right-inner {
+    border-top: 1px solid rgba(212,175,55,0.3);
+    padding-top: 20px;
+    width: 100%;
+  }
+
+  .ab-promise-cursive {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .ab-promise-cursive br,
+  .ab-promise-right-text br {
+    display: none;
+  }
+
+  .ab-promise-right-text {
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+  }
+
+  .ab-promise-bottom {
+    padding: 30px 0 10px;
+    justify-content: center;
+  }
+
+  .ab-promise-tags {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.78rem;
+    gap: 10px;
+  }
+
+  .ab-promise-line {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .ab-hero {
+    padding: 70px 16px 40px;
+  }
+
+  .ab-story-section,
+  .ab-founder-section,
+  .ab-belief-section,
+  .ab-promise-section {
+    padding: 44px 16px;
+  }
+
+  .ab-cta-section {
+    padding: 30px 16px;
+  }
+
+  .ab-photo-stack {
+    width: 170px;
+    height: 200px;
+  }
+
+  .ab-photo-top {
+    width: 118px;
+    height: 132px;
+  }
+
+  .ab-photo-bottom {
+    width: 112px;
+    height: 126px;
+  }
+
+  .ab-founder-center {
+    height: 260px;
+    margin: 20px 0;
+  }
+
+  .ab-story-right,
+  .ab-founder-right {
+    gap: 16px 10px;
+  }
+
+  .ab-milestone {
+    gap: 10px;
+  }
+
+  .ab-milestone-title {
+    font-size: 0.82rem;
+  }
+
+  .ab-milestone-sub {
+    font-size: 0.7rem;
+  }
+
+  .ab-milestone-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .ab-milestone-icon svg {
+    width: 18px;
+    height: 18px;
+  }
 }

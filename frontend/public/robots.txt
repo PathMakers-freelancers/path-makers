@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block non-public or internal paths
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://pathmakerstech.in/sitemap.xml

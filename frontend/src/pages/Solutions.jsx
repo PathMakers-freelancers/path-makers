@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import useSEO from '../hooks/useSEO';
 import './Solutions.css';
 import heroBgImage from '../assets/solutions-hero-bg.png';
 import exampleFlowImage from '../assets/solutions-example-flow.png';
@@ -19,6 +20,24 @@ const Solutions = () => {
   const [heroWord, setHeroWord] = useState('SIMPLER');
   const [activeProblem, setActiveProblem] = useState(null);
   const [hasInteracted, setHasInteracted] = useState(false);
+
+  useSEO({
+    title: 'Solutions | Custom Software, Web Apps, Mobile Apps & Business Automation — PathMakers',
+    description:
+      'PathMakers Technologies delivers custom software development, web application development, mobile app development, and business process automation solutions for businesses in Tamil Nadu and across India.',
+    canonical: 'https://pathmakerstech.in/solutions',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': 'https://pathmakerstech.in/solutions#webpage',
+      url: 'https://pathmakerstech.in/solutions',
+      name: 'Software Solutions by PathMakers Technologies',
+      description:
+        'Custom software development, web application development, mobile app development, business automation, ERP and CRM solutions by PathMakers Technologies.',
+      isPartOf: { '@id': 'https://pathmakerstech.in/#website' },
+    },
+  });
+
   
   const [images, setImages] = useState({
     heroBg: heroBgImage,
@@ -76,76 +95,172 @@ const Solutions = () => {
     return () => clearTimeout(timer);
   }, [hasInteracted]);
 
+  const [investmentPinState, setInvestmentPinState] = useState('top');
+
   useEffect(() => {
     const handleInvestmentScroll = () => {
+      if (isMobile) return;
       if (!investmentScrollRef.current) return;
       const rect = investmentScrollRef.current.getBoundingClientRect();
-      const top = rect.top;
-      const height = rect.height;
-      const windowHeight = window.innerHeight;
-      const currentScrollY = window.scrollY;
-      const isScrollingDown = currentScrollY > lastScrollYRef.current;
-      lastScrollYRef.current = currentScrollY;
+      const scrollableDistance = rect.height - window.innerHeight;
+      if (scrollableDistance <= 0) return;
 
-      // Auto-snap scroll effect (Top boundary)
-      if (top > 0 && top < windowHeight && !isAutoScrollingRef.current) {
-        if (isScrollingDown && top < windowHeight * 0.9) {
-          // Scrolled down into it 10%. Snap IN (top -> 0)
-          isAutoScrollingRef.current = true;
-          window.scrollTo({ top: currentScrollY + top, behavior: 'smooth' });
-          setTimeout(() => { isAutoScrollingRef.current = false; }, 1000);
-        } else if (!isScrollingDown && top > windowHeight * 0.1) {
-          // Scrolled up out of it 10%. Snap OUT (top -> windowHeight)
-          isAutoScrollingRef.current = true;
-          window.scrollTo({ top: currentScrollY - (windowHeight - top), behavior: 'smooth' });
-          setTimeout(() => { isAutoScrollingRef.current = false; }, 1000);
-        }
-      }
+      if (rect.top > 0) {
+        setInvestmentPinState('top');
+        setInvestmentScrollStep(0);
+        setActiveInvestmentWedge(5);
+      } else if (-rect.top >= scrollableDistance) {
+        setInvestmentPinState('bottom');
+        setInvestmentScrollStep(5);
+        setActiveInvestmentWedge(4);
+      } else {
+        setInvestmentPinState('fixed');
+        const rawProgress = -rect.top / scrollableDistance;
+        const progress = Math.min(1, Math.max(0, rawProgress));
 
-      // Auto-snap scroll effect (Bottom boundary) removed to allow normal scrolling to the CTA and footer.
-
-      // Calculate progress when section is pinned
-      if (top <= 0 && top > -height + windowHeight) {
-        const scrollableDistance = height - windowHeight;
-        const scrolled = -top;
-        const progress = Math.min(1, Math.max(0, scrolled / scrollableDistance));
-        
-        // Sequence: Development(5), Hosting(0), Domain(1), Third-Party(2), Maintenance(3), Future Changes(4)
         const sequence = [5, 0, 1, 2, 3, 4];
-        const step = Math.min(5, Math.floor(progress * 6));
+        // Scale progress so all 6 steps complete within 0.0 -> 0.85, holding final step 5 from 0.85 -> 1.0
+        const stepProgress = Math.min(0.999, progress / 0.85);
+        const step = Math.min(5, Math.floor(stepProgress * 6));
         setInvestmentScrollStep(step);
         setActiveInvestmentWedge(sequence[step]);
-      } else if (top > 0) {
-        setInvestmentScrollStep(0);
-        setActiveInvestmentWedge(5); // Before scrolling in
-      } else {
-        setInvestmentScrollStep(5);
-        setActiveInvestmentWedge(4); // After scrolling past
       }
     };
-    window.addEventListener('scroll', handleInvestmentScroll);
-    return () => window.removeEventListener('scroll', handleInvestmentScroll);
-  }, []);
+
+    window.addEventListener('scroll', handleInvestmentScroll, { passive: true });
+    window.addEventListener('resize', handleInvestmentScroll, { passive: true });
+    handleInvestmentScroll();
+    return () => {
+      window.removeEventListener('scroll', handleInvestmentScroll);
+      window.removeEventListener('resize', handleInvestmentScroll);
+    };
+  }, [isMobile]);
+
+  const getInvestmentStickyContainerStyle = () => {
+    if (isMobile) {
+      return {
+        position: 'relative',
+        height: 'auto',
+        paddingTop: '40px',
+        padding: '15px',
+        width: '100%',
+        overflow: 'visible',
+        backgroundColor: '#FDFBF7',
+        display: 'flex',
+        alignItems: 'flex-start'
+      };
+    }
+
+    const baseStyle = {
+      width: '100%',
+      height: '100vh',
+      overflow: 'hidden',
+      backgroundColor: '#FDFBF7',
+      backgroundImage: `url(${solutionsBgImg})`,
+      backgroundPosition: 'right center',
+      backgroundSize: 'auto 100%',
+      backgroundRepeat: 'no-repeat',
+      display: 'flex',
+      alignItems: 'center',
+      paddingTop: '40px',
+      boxShadow: 'inset 0 20px 30px -10px rgba(0,0,0,0.02)'
+    };
+
+    if (investmentPinState === 'fixed') {
+      return { ...baseStyle, position: 'fixed', top: 0, left: 0, zIndex: 30 };
+    }
+    if (investmentPinState === 'bottom') {
+      return { ...baseStyle, position: 'absolute', bottom: 0, left: 0, zIndex: 10 };
+    }
+    return { ...baseStyle, position: 'absolute', top: 0, left: 0, zIndex: 10 };
+  };
+
+  const [pinState, setPinState] = useState('top');
+
+  const getTabScrollTop = (tabName) => {
+    if (!fourWaysRef.current) return 0;
+    const offsetTop = fourWaysRef.current.offsetTop;
+    const pinnedDist = fourWaysRef.current.offsetHeight - window.innerHeight;
+    const targetProgress = {
+      Intro: 0,
+      Build: 0.26,
+      Connect: 0.49,
+      Automate: 0.72,
+      Experience: 0.95
+    }[tabName] || 0;
+    return offsetTop + (pinnedDist * targetProgress);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth <= 768) return;
+      if (isMobile) return;
       if (!fourWaysRef.current) return;
       const rect = fourWaysRef.current.getBoundingClientRect();
-      const progress = -rect.top / (rect.height - window.innerHeight);
-      
-      if (progress >= 0 && progress <= 1) {
-        if (progress < 0.05) setActiveTab('Intro');
-        else if (progress < 0.30) setActiveTab('Build');
-        else if (progress < 0.55) setActiveTab('Connect');
-        else if (progress < 0.80) setActiveTab('Automate');
-        else setActiveTab('Experience');
+      const scrollableDistance = rect.height - window.innerHeight;
+      if (scrollableDistance <= 0) return;
+
+      if (rect.top > 0) {
+        setPinState('top');
+        setActiveTab('Intro');
+      } else if (-rect.top >= scrollableDistance) {
+        setPinState('bottom');
+        setActiveTab('Experience');
+      } else {
+        setPinState('fixed');
+        const rawProgress = -rect.top / scrollableDistance;
+        const progress = Math.min(1, Math.max(0, rawProgress));
+
+        if (progress < 0.15) {
+          setActiveTab('Intro');
+        } else if (progress < 0.38) {
+          setActiveTab('Build');
+        } else if (progress < 0.61) {
+          setActiveTab('Connect');
+        } else if (progress < 0.84) {
+          setActiveTab('Automate');
+        } else {
+          setActiveTab('Experience');
+        }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [isMobile]);
+
+  const getStickyContainerStyle = () => {
+    if (isMobile) {
+      return {
+        position: 'relative',
+        height: 'auto',
+        display: 'flex',
+        alignItems: 'flex-start',
+        overflow: 'visible',
+        paddingTop: '40px'
+      };
+    }
+
+    const baseStyle = {
+      width: '100%',
+      height: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      overflow: 'hidden'
+    };
+
+    if (pinState === 'fixed') {
+      return { ...baseStyle, position: 'fixed', top: 0, left: 0, zIndex: 30 };
+    }
+    if (pinState === 'bottom') {
+      return { ...baseStyle, position: 'absolute', bottom: 0, left: 0, zIndex: 10 };
+    }
+    return { ...baseStyle, position: 'absolute', top: 0, left: 0, zIndex: 10 };
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -289,16 +404,9 @@ const Solutions = () => {
                       style={{ color: '#111827', background: 'none', border: 'none', padding: 0, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.9rem', marginTop: 'auto' }}
                       onClick={(e) => {
                         e.stopPropagation();
-                        if(fourWaysRef.current) {
-                          const tabIndex = ['Build', 'Connect', 'Automate', 'Experience'].indexOf(prob.tab);
-                          if (tabIndex !== -1) {
-                            const scrollTargets = [
-                              fourWaysRef.current.offsetTop,
-                              fourWaysRef.current.offsetTop + (fourWaysRef.current.offsetHeight * 0.33) - window.innerHeight/2,
-                              fourWaysRef.current.offsetTop + (fourWaysRef.current.offsetHeight * 0.66) - window.innerHeight/2,
-                              fourWaysRef.current.offsetTop + fourWaysRef.current.offsetHeight - window.innerHeight
-                            ];
-                            window.scrollTo({top: scrollTargets[tabIndex], behavior: 'smooth'});
+                        if (fourWaysRef.current) {
+                          if (window.innerWidth > 768) {
+                            window.scrollTo({ top: getTabScrollTop(prob.tab), behavior: 'smooth' });
                           } else {
                             fourWaysRef.current.scrollIntoView({ behavior: 'smooth' });
                           }
@@ -349,8 +457,8 @@ const Solutions = () => {
       </section>
 
       {/* 03 & 04 - Four Ways (Combined) */}
-      <section className="s-four-ways" id="four-ways" ref={fourWaysRef} data-active-tab={activeTab} style={{ position: 'relative', height: window.innerWidth > 768 ? '250vh' : 'auto', background: '#FDFBF7' }}>
-        <div style={{ position: window.innerWidth > 768 ? 'sticky' : 'relative', top: 0, height: window.innerWidth > 768 ? '100vh' : 'auto', display: 'flex', alignItems: window.innerWidth > 768 ? 'center' : 'flex-start', overflow: window.innerWidth > 768 ? 'hidden' : 'visible', paddingTop: window.innerWidth > 768 ? 0 : '40px' }}>
+      <section className="s-four-ways" id="four-ways" ref={fourWaysRef} data-active-tab={activeTab} style={{ position: 'relative', height: isMobile ? 'auto' : '280vh', background: '#FDFBF7' }}>
+        <div className="s-four-sticky" style={getStickyContainerStyle()}>
           
           {/* Background slanted bars */}
           <div className="s-problem-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none', overflow: 'hidden', background: 'repeating-linear-gradient(-45deg, rgba(212,175,55,0.06) 0px, rgba(212,175,55,0.06) 150px, transparent 150px, transparent 300px)' }}></div>
@@ -359,7 +467,7 @@ const Solutions = () => {
           <div style={{ position: 'absolute', left: '-15%', top: '-30%', width: '60%', height: '160%', transform: 'rotate(25deg)', background: 'linear-gradient(to right, #FDFBF7 40%, rgba(255,255,255,0.4) 100%)', boxShadow: '10px 0 30px rgba(212,175,55,0.05)', zIndex: 0, pointerEvents: 'none' }}></div>
 
           {/* Intro Screen Overlay */}
-          <div className="s-four-ways-intro" style={{ position: window.innerWidth > 768 ? 'absolute' : 'relative', top: 0, left: 0, width: '100%', height: window.innerWidth > 768 ? '100%' : 'auto', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#FDFBF7', opacity: activeTab === 'Intro' ? 1 : 0, pointerEvents: activeTab === 'Intro' ? 'all' : 'none', transition: 'all 0.6s ease-in-out', transform: activeTab === 'Intro' ? 'scale(1)' : 'scale(1.05)', paddingTop: window.innerWidth > 768 ? '80px' : '40px', paddingBottom: window.innerWidth > 768 ? 0 : '40px' }}>
+          <div className="s-four-ways-intro" style={{ position: isMobile ? 'relative' : 'absolute', top: 0, left: 0, width: '100%', height: isMobile ? 'auto' : '100%', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#FDFBF7', opacity: activeTab === 'Intro' ? 1 : 0, pointerEvents: activeTab === 'Intro' ? 'all' : 'none', transition: 'all 0.6s ease-in-out', transform: activeTab === 'Intro' ? 'scale(1)' : 'scale(1.05)', paddingTop: isMobile ? '40px' : '80px', paddingBottom: isMobile ? '40px' : 0 }}>
             <div style={{ letterSpacing: '0.15em', fontSize: '0.85rem', color: '#6B7280', fontWeight: 700, marginBottom: '20px', textTransform: 'uppercase' }}>THE RIGHT APPROACH. THE RIGHT SOLUTION.</div>
             <h2 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#111827', marginBottom: '40px', lineHeight: '1.2', textAlign: 'center' }}>
               THERE IS MORE THAN ONE WAY<br/>
@@ -376,8 +484,8 @@ const Solutions = () => {
                 return (
                  <div key={tab} onClick={() => { 
                    setActiveTab(tab); 
-                   if (window.innerWidth > 768) {
-                     window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); 
+                   if (!isMobile) {
+                     window.scrollTo({ top: getTabScrollTop(tab), behavior: 'smooth' }); 
                    } else {
                      fourWaysRef.current.scrollIntoView({ behavior: 'smooth' });
                    }
@@ -394,7 +502,7 @@ const Solutions = () => {
             </div>
           </div>
 
-          <div className="container" style={{ position: window.innerWidth > 768 ? 'absolute' : 'relative', zIndex: 1, width: '100%', maxWidth: '1400px', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '60px', alignItems: 'center', padding: '5vh 20px', opacity: activeTab !== 'Intro' ? 1 : 0, transform: activeTab !== 'Intro' ? 'scale(1)' : 'scale(0.95)', transition: 'all 0.6s ease-in-out', pointerEvents: activeTab !== 'Intro' ? 'all' : 'none' }}>
+          <div className="container" style={{ position: isMobile ? 'relative' : 'absolute', top: isMobile ? 'auto' : '50%', left: isMobile ? 'auto' : '50%', transform: isMobile ? (activeTab !== 'Intro' ? 'scale(1)' : 'scale(0.95)') : (activeTab !== 'Intro' ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0.95)'), zIndex: 1, width: '100%', maxWidth: '1400px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.6fr', gap: '60px', alignItems: 'center', padding: '5vh 20px', opacity: activeTab !== 'Intro' ? 1 : 0, transition: 'all 0.6s ease-in-out', pointerEvents: activeTab !== 'Intro' ? 'all' : 'none' }}>
             
             {/* Left Column */}
             <div style={{ paddingRight: '20px' }}>
@@ -421,7 +529,7 @@ const Solutions = () => {
                    <div key={tab} onClick={() => { 
                      setActiveTab(tab); 
                      if (window.innerWidth > 768) {
-                       window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); 
+                       window.scrollTo({ top: getTabScrollTop(tab), behavior: 'smooth' }); 
                      } else {
                        fourWaysRef.current.scrollIntoView({ behavior: 'smooth' });
                      }
@@ -446,7 +554,7 @@ const Solutions = () => {
                    <div key={tab} onClick={() => { 
                      setActiveTab(tab); 
                      if (window.innerWidth > 768) {
-                       window.scrollTo({top: fourWaysRef.current.offsetTop + window.innerHeight * (tab === 'Build' ? 0.25 : tab === 'Connect' ? 0.65 : tab === 'Automate' ? 1 : 1.35), behavior: 'smooth'}); 
+                       window.scrollTo({ top: getTabScrollTop(tab), behavior: 'smooth' }); 
                      } else {
                        fourWaysRef.current.scrollIntoView({ behavior: 'smooth' });
                      }
@@ -556,7 +664,7 @@ const Solutions = () => {
       </section>
 
       {/* 08 - Or Maybe it's Already Built */}
-      <section className="s-already-built-section" style={{ width: '100%', minHeight: '500px', backgroundColor: '#FDFBF7', display: 'flex', borderTop: '1px solid rgba(212,175,55,0.1)', borderBottom: '1px solid rgba(212,175,55,0.1)' }}>
+      <section className="s-already-built-section" style={{ position: 'relative', zIndex: 5, width: '100%', minHeight: '500px', backgroundColor: '#FDFBF7', display: 'flex', borderTop: '1px solid rgba(212,175,55,0.1)', borderBottom: '1px solid rgba(212,175,55,0.1)' }}>
         
         {/* Background Image Container */}
         <div style={{ flex: '0 0 35%', minWidth: '350px', position: 'relative', WebkitMaskImage: 'linear-gradient(to right, black 0%, black 80%, transparent 100%)', maskImage: 'linear-gradient(to right, black 0%, black 80%, transparent 100%)' }}>
@@ -818,23 +926,8 @@ const Solutions = () => {
 
 
       {/* 14 - Cost / Scope (Animated Sticky Section) */}
-      <section className="s-cost-section" ref={investmentScrollRef} style={{ position: 'relative', width: '100%', height: '400vh', background: '#FDFBF7' }}>
-        <div style={{
-          position: 'sticky', top: isMobile ? '60px' : '0', 
-          height: isMobile ? 'calc(100vh - 60px)' : '100vh', 
-          paddingTop: isMobile ? '0' : '80px', 
-          padding: isMobile ? '15px' : undefined,
-          width: '100%', 
-          overflow: isMobile ? 'visible' : 'hidden',
-          backgroundColor: '#FDFBF7',
-          backgroundImage: `url(${solutionsBgImg})`,
-          backgroundPosition: 'right center',
-          backgroundSize: 'auto 100%',
-          backgroundRepeat: 'no-repeat',
-          display: 'flex', 
-          alignItems: isMobile ? 'flex-start' : 'center',
-          boxShadow: 'inset 0 20px 30px -10px rgba(0,0,0,0.02)'
-        }}>
+      <section className="s-cost-section" ref={investmentScrollRef} style={{ position: 'relative', width: '100%', height: isMobile ? 'auto' : '550vh', background: '#FDFBF7' }}>
+        <div style={getInvestmentStickyContainerStyle()}>
           {/* Gradient Overlay for Left Side */}
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #FDFBF7 40%, rgba(253,251,247,0.95) 65%, transparent 100%)' }}></div>
           
@@ -1084,7 +1177,7 @@ const Solutions = () => {
       </section>
 
       {/* 14 & 15 - CTA */}
-      <section className="s-cta" style={{ position: 'relative', padding: '140px 0 60px 0', backgroundImage: `url(${images.productsBg})`, backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <section className="s-cta" style={{ position: 'relative', zIndex: 50, padding: '140px 0 60px 0', backgroundColor: '#FDFBF7', backgroundImage: `url(${images.productsBg})`, backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', position: 'relative', zIndex: 2, width: '92%', maxWidth: '1400px', margin: '0 auto', flexWrap: 'wrap', gap: '8vw' }}>
           
           {/* Left Content */}

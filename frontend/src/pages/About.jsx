@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import useSEO from '../hooks/useSEO';
 import './About.css';
 
 // Image imports — upload these files to frontend/src/assets/
@@ -13,6 +14,33 @@ import pmLogo      from '../assets/pmlogo.png';
 
 const About = () => {
   const observerRef = useRef(null);
+
+  useSEO({
+    title: 'About PathMakers Technologies | Naresh Dharmaraj, Founder',
+    description:
+      'Learn about PathMakers Technologies, a software development company in Tamil Nadu founded by Naresh Dharmaraj. We build custom software solutions shaped around your business needs.',
+    canonical: 'https://pathmakerstech.in/about',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      '@id': 'https://pathmakerstech.in/about#webpage',
+      url: 'https://pathmakerstech.in/about',
+      name: 'About PathMakers Technologies',
+      description:
+        'PathMakers Technologies is a software company in Tamil Nadu founded by Naresh Dharmaraj, building custom software, web apps, mobile apps and business automation solutions.',
+      isPartOf: { '@id': 'https://pathmakerstech.in/#website' },
+      about: [
+        { '@id': 'https://pathmakerstech.in/#organization' },
+        {
+          '@type': 'Person',
+          name: 'Naresh Dharmaraj',
+          jobTitle: 'Founder & Developer',
+          worksFor: { '@id': 'https://pathmakerstech.in/#organization' },
+        },
+      ],
+    },
+  });
+
   useEffect(() => {
     document.documentElement.classList.add('ab-snap-html');
     
@@ -39,9 +67,9 @@ const About = () => {
         <div className="ab-hero-left ab-animate">
           <p className="ab-eyebrow-dark">ABOUT PATHMAKERS</p>
           <h1 className="ab-hero-title">
-            WE STARTED WITH<br />
-            <span className="ab-gold">CURIOSITY.</span><br />
-            WE BUILT WITH<br />
+            WE STARTED WITH<br className="ab-desktop-br" />{' '}
+            <span className="ab-gold">CURIOSITY.</span><br className="ab-desktop-br" />{' '}
+            WE BUILT WITH<br className="ab-desktop-br" />{' '}
             <span className="ab-gold">PURPOSE.</span>
           </h1>
           <p className="ab-hero-desc">
@@ -57,12 +85,12 @@ const About = () => {
         <div className="ab-story-left ab-animate">
           <p className="ab-eyebrow-story">THE BEGINNING</p>
           <h2 className="ab-section-title">
-            IT DIDN'T START WITH A<br />
+            IT DIDN'T START WITH A<br className="ab-desktop-br" />{' '}
             <span className="ab-gold">BUSINESS PLAN.</span>
           </h2>
           <p className="ab-story-bold">
-            On January 1, 2026, it started with a simple thought —<br />
-            "What if the things we build as students could solve<br />
+            On January 1, 2026, it started with a simple thought —<br className="ab-desktop-br" />{' '}
+            "What if the things we build as students could solve<br className="ab-desktop-br" />{' '}
             real problems in the world?"
           </p>
           <p className="ab-story-text">
@@ -124,7 +152,7 @@ const About = () => {
         <div className="ab-founder-left ab-animate">
           <p className="ab-eyebrow-light ab-tracking-wide">THE PERSON BEHIND IT</p>
           <h2 className="ab-founder-title">
-            THE BRAIN BEHIND<br />
+            THE BRAIN BEHIND<br className="ab-desktop-br" />{' '}
             <span className="ab-gold">PATHMAKERS.</span>
           </h2>
           <div className="ab-founder-divider" />
@@ -137,13 +165,20 @@ const About = () => {
             and gradually built a team of developers who shared the same belief —
             that technology can actually make a difference.
           </p>
-          <p className="ab-founder-signature">Naresh Dharmaraj</p>
-          <p className="ab-founder-role">Founder &amp; Developer</p>
+          <div className="ab-founder-author ab-founder-author-desktop">
+            <p className="ab-founder-signature">Naresh Dharmaraj</p>
+            <p className="ab-founder-role">Founder &amp; Developer</p>
+          </div>
         </div>
 
         <div className="ab-founder-center ab-animate">
           <img src={founderImg} alt="Naresh" className="ab-founder-img" />
           <div className="ab-founder-img-fade" />
+        </div>
+
+        <div className="ab-founder-author ab-founder-author-mobile ab-animate">
+          <p className="ab-founder-signature">Naresh Dharmaraj</p>
+          <p className="ab-founder-role">Founder &amp; Developer</p>
         </div>
 
         <div className="ab-founder-right ab-animate">
@@ -190,16 +225,16 @@ const About = () => {
           <div className="ab-belief-left ab-animate">
             <p className="ab-eyebrow-story ab-tracking-wide">THE BELIEF</p>
             <h2 className="ab-belief-title">
-              A HUNGRY PERSON DOESN'T<br />
+              A HUNGRY PERSON DOESN'T<br className="ab-desktop-br" />{' '}
               <span className="ab-gold">NEED A GOLDEN BISCUIT.</span>
             </h2>
             <p className="ab-belief-subtitle">
-              We don’t start with what we can build.<br />
+              We don’t start with what we can build.<br className="ab-desktop-br" />{' '}
               We start with what you actually need.
             </p>
             <p className="ab-belief-text">
-              A simpler solution that fits your workflow<br />
-              can be more valuable than a sophisticated system<br />
+              A simpler solution that fits your workflow<br className="ab-desktop-br" />{' '}
+              can be more valuable than a sophisticated system<br className="ab-desktop-br" />{' '}
               that forces you to change the way you work.
             </p>
             <div className="ab-belief-divider" />
@@ -211,8 +246,8 @@ const About = () => {
                 </svg>
               </div>
               <p className="ab-belief-quote-text">
-                The right solution isn't always<br />
-                the biggest one. It's the one that<br />
+                The right solution isn't always<br className="ab-desktop-br" />{' '}
+                the biggest one. It's the one that<br className="ab-desktop-br" />{' '}
                 solves the right problem.
               </p>
             </div>
@@ -220,7 +255,7 @@ const About = () => {
 
           <div className="ab-belief-right ab-animate">
             <p className="ab-belief-floating-text">
-              Not the biggest.<br />
+              Not the biggest.<br className="ab-desktop-br" />{' '}
               Just the right one.
             </p>
           </div>
@@ -237,8 +272,8 @@ const About = () => {
           <div className="ab-promise-left ab-animate">
             <p className="ab-eyebrow-story ab-tracking-wide">OUR PROMISE</p>
             <h2 className="ab-promise-title">
-              YOUR BUSINESS HAS A PATH.<br />
-              <span className="ab-gold">TECHNOLOGY SHOULD HELP YOU<br />WALK IN IT.</span>
+              YOUR BUSINESS HAS A PATH.<br className="ab-desktop-br" />{' '}
+              <span className="ab-gold">TECHNOLOGY SHOULD HELP YOU<br className="ab-desktop-br" />WALK IN IT.</span>
             </h2>
             <p className="ab-promise-text">
               We may build software. We may connect systems.<br />

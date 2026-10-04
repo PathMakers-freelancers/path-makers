@@ -148,9 +148,10 @@
 
 /* Four Ways Section */
 .s-four-ways {
-  background: #f0f4f8;
-  height: 300vh; /* For scroll-jacking */
+  background: #FDFBF7;
+  height: 280vh; /* Controlled pinned scroll distance */
   position: relative;
+  z-index: 1;
 }
 
 .s-four-sticky {

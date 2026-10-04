@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import useSEO from '../hooks/useSEO';
 import './Home.css';
 import homeHeroImg from '../assets/homehero.png';
 import beforeBuildImg from '../assets/beforebuild.png';
@@ -180,6 +181,24 @@ const Home = () => {
   const [openGuidanceFaqIndex, setOpenGuidanceFaqIndex] = useState(null);
   const problemSectionRef = useRef(null);
   const caseSliderRef = useRef(null);
+
+  useSEO({
+    title: 'PathMakers Technologies | Custom Software Development Company in Tamil Nadu',
+    description:
+      'PathMakers Technologies is a software development company in Tamil Nadu building custom software solutions, web applications, mobile apps, business automation, ERP and CRM systems for your business.',
+    canonical: 'https://pathmakerstech.in/',
+    structuredData: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': 'https://pathmakerstech.in/#webpage',
+      url: 'https://pathmakerstech.in/',
+      name: 'PathMakers Technologies | Custom Software Development Company',
+      description:
+        'PathMakers Technologies builds custom software, web applications, mobile apps, business automation, ERP and CRM solutions in Tamil Nadu, India.',
+      isPartOf: { '@id': 'https://pathmakerstech.in/#website' },
+    },
+  });
+
 
   const scrollCasePrev = () => {
     if (caseSliderRef.current) {
@@ -1177,10 +1196,15 @@ const Home = () => {
                 </p>
                 <div className="testimonial-bottom">
                   <div className="testimonial-author">
-                    <img className="author-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Aravind Kumar" />
+                    <div className="author-avatar-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </svg>
+                    </div>
                     <div className="author-info">
                       <h4>Aravind Kumar</h4>
-                      <p>Founder, Sunrise Insurance</p>
+                      <p>Insurance Agent</p>
                       <div className="stars">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" strokeWidth="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" strokeWidth="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
