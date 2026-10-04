@@ -100,6 +100,21 @@ const Solutions = () => {
   useEffect(() => {
     const handleInvestmentScroll = () => {
       if (!investmentScrollRef.current) return;
+      
+      if (isMobile) {
+        const rect = investmentScrollRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight || 600;
+        const totalDist = rect.height + windowHeight;
+        const currentDist = windowHeight - rect.top;
+        const rawProgress = Math.min(1, Math.max(0, currentDist / totalDist));
+        
+        const sequence = [5, 0, 1, 2, 3, 4];
+        const step = Math.min(5, Math.floor(rawProgress * 6));
+        setInvestmentScrollStep(step);
+        setActiveInvestmentWedge(sequence[step]);
+        return;
+      }
+
       const rect = investmentScrollRef.current.getBoundingClientRect();
       const scrollableDistance = rect.height - window.innerHeight;
       if (scrollableDistance <= 0) return;
@@ -133,22 +148,36 @@ const Solutions = () => {
       window.removeEventListener('scroll', handleInvestmentScroll);
       window.removeEventListener('resize', handleInvestmentScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   const getInvestmentStickyContainerStyle = () => {
+    if (isMobile) {
+      return {
+        width: '100%',
+        position: 'relative',
+        padding: '30px 16px',
+        backgroundColor: '#FDFBF7',
+        backgroundImage: `url(${solutionsBgImg})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      };
+    }
+
     const baseStyle = {
       width: '100%',
       height: '100vh',
-      height: '100dvh',
       overflow: 'hidden',
       backgroundColor: '#FDFBF7',
       backgroundImage: `url(${solutionsBgImg})`,
-      backgroundPosition: isMobile ? 'center' : 'right center',
-      backgroundSize: isMobile ? 'cover' : 'auto 100%',
+      backgroundPosition: 'right center',
+      backgroundSize: 'auto 100%',
       backgroundRepeat: 'no-repeat',
       display: 'flex',
       alignItems: 'center',
-      paddingTop: isMobile ? '10px' : '40px',
+      paddingTop: '40px',
       boxShadow: 'inset 0 20px 30px -10px rgba(0,0,0,0.02)'
     };
 
@@ -964,6 +993,44 @@ const Solutions = () => {
               <button style={{ background: 'linear-gradient(90deg, #B98031, #D4AF37)', color: '#fff', border: 'none', padding: '14px 28px', borderRadius: '40px', fontWeight: 600, fontSize: '0.9rem', cursor: 'pointer', display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '10px', boxShadow: '0 10px 20px rgba(212,175,55,0.3)' }}>
                 Discuss Your Requirement &rarr;
               </button>
+
+              {isMobile && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center', margin: '8px 0 10px', width: '100%', zIndex: 10 }}>
+                  {[
+                    { label: 'DEVELOPMENT', wedgeIdx: 5, stepIdx: 0 },
+                    { label: 'HOSTING', wedgeIdx: 0, stepIdx: 1 },
+                    { label: 'DOMAIN', wedgeIdx: 1, stepIdx: 2 },
+                    { label: 'THIRD-PARTY', wedgeIdx: 2, stepIdx: 3 },
+                    { label: 'MAINTENANCE', wedgeIdx: 3, stepIdx: 4 },
+                    { label: 'FUTURE CHANGES', wedgeIdx: 4, stepIdx: 5 },
+                  ].map((item) => {
+                    const isActive = activeInvestmentWedge === item.wedgeIdx;
+                    return (
+                      <button
+                        key={item.label}
+                        onClick={() => {
+                          setActiveInvestmentWedge(item.wedgeIdx);
+                          setInvestmentScrollStep(item.stepIdx);
+                        }}
+                        style={{
+                          padding: '5px 10px',
+                          borderRadius: '20px',
+                          fontSize: '0.62rem',
+                          fontWeight: 700,
+                          border: isActive ? '1px solid #B98031' : '1px solid rgba(0,0,0,0.12)',
+                          background: isActive ? 'linear-gradient(135deg, #B98031 0%, #D4AF37 100%)' : '#ffffff',
+                          color: isActive ? '#ffffff' : '#4B5563',
+                          cursor: 'pointer',
+                          boxShadow: isActive ? '0 3px 8px rgba(185,128,49,0.3)' : 'none',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        {item.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
   
             {/* Right Side: The Wheel Infographic */}
