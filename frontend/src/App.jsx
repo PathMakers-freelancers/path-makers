@@ -12,6 +12,8 @@ import About from './pages/About';
 import Solutions from './pages/Solutions';
 import Products from './pages/Products';
 import LetsBuild from './pages/LetsBuild';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
 import NotFound from './pages/NotFound';
 
 // Solution Sub-Pages
@@ -29,6 +31,9 @@ const validRoutes = [
   '/solutions',
   '/products',
   '/lets-build',
+  '/privacy',
+  '/terms',
+  '/terms-and-conditions',
   '/contact',
   '/build',
   '/solutions/custom-software',
@@ -53,6 +58,9 @@ function AppContent() {
           <Route path="/solutions" element={<Solutions />} />
           <Route path="/products" element={<Products />} />
           <Route path="/lets-build" element={<LetsBuild />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/terms-and-conditions" element={<Navigate to="/terms" replace />} />
           <Route path="/contact" element={<Navigate to="/lets-build" replace />} />
 
           {/* Solution sub-routes */}
