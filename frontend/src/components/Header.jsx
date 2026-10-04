@@ -83,7 +83,10 @@ const Header = () => {
         <div className="mobile-menu-header">
           <div className="mobile-menu-brand">
             <img src={pmLogo} alt="Pathmakers" className="mobile-menu-logo" />
-            <strong className="mobile-menu-brand-name">PATHMAKERS TECHNOLOGIES</strong>
+            <div className="mobile-menu-logo-text">
+              <strong>PATHMAKERS</strong>
+              <span>TECHNOLOGIES</span>
+            </div>
           </div>
           <button className="close-menu-btn" onClick={closeMobileMenu}>&times;</button>
         </div>
