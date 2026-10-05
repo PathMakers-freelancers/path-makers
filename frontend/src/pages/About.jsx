@@ -148,7 +148,7 @@ const About = () => {
       </section>
 
       {/* 03 FOUNDER */}
-      <section className="ab-founder-section">
+      <section id="founder" className="ab-founder-section">
         <div className="ab-founder-left ab-animate">
           <p className="ab-eyebrow-light ab-tracking-wide">THE PERSON BEHIND IT</p>
           <h2 className="ab-founder-title">
