@@ -1,30 +1,56 @@
 # PathMakers Technologies
 
-> PathMakers Technologies is a custom software development company based in Tamil Nadu, India. We build tailored web applications, mobile apps, business automation systems, and ready-to-use software products including Vidhai ERP.
+> PathMakers Technologies is a custom software development company based in Tamil Nadu, India. We build tailored web applications, mobile apps, business automation systems, and ready-to-use software products including Vidhai ERP, Insurance CRM, and FeatherLMS.
 
-## Core Capabilities & Services
-
-- [Custom Software Development](https://pathmakerstech.in/solutions/custom-software): Tailored software architecture designed around unique business workflows.
-- [Web Applications](https://pathmakerstech.in/solutions/web-applications): Modern, scalable web applications built with React, Node, and cloud infrastructure.
-- [Mobile Apps](https://pathmakerstech.in/solutions/mobile-apps): Native and cross-platform iOS & Android mobile applications.
-- [Business Automation](https://pathmakerstech.in/solutions/business-automation): Workflow automation, API integrations, and digital transformation for operational efficiency.
-- [Vidhai ERP - School Management System](https://pathmakerstech.in/products/vidhai-erp): Comprehensive ERP software for educational institutions handling admissions, attendance, fees, exams, and communication.
-
-## Primary Pages & Documentation
-
-- [Home](https://pathmakerstech.in/): Company overview, technology stack, and engineering approach.
-- [About Us](https://pathmakerstech.in/about): Founder story (Naresh Dharmaraj), mission, beliefs, and engineering principles.
-- [Solutions Hub](https://pathmakerstech.in/solutions): Overview of custom software, web apps, mobile apps, and automation.
-- [Products Hub](https://pathmakerstech.in/products): Overview of ready-to-use software products.
-- [Let's Build](https://pathmakerstech.in/lets-build): Project consultation, estimation, and contact channel.
-- [Privacy Policy](https://pathmakerstech.in/privacy): Privacy policy and data protection practices.
-- [Terms & Conditions](https://pathmakerstech.in/terms): Terms of service, licensing, and usage conditions.
-
-## Company Details
+## Company & Founder Details
 
 - **Company Name**: PathMakers Technologies
-- **Founder**: Naresh Dharmaraj
+- **Founder & Managing Director**: Naresh Dharmaraj
 - **Headquarters**: P.Velur, Namakkal District, Tamil Nadu, India
 - **Phone**: +91 7200754566
 - **Email**: noreply.pathmakers@gmail.com
 - **Website**: https://pathmakerstech.in
+
+## Core Services & Solutions
+
+1. **Custom Software Development**: Tailored software architecture designed around unique business workflows, databases, and operational requirements.
+2. **Web Application Development**: High-performance React web applications, SaaS platforms, internal portals, and cloud backends.
+3. **Mobile App Development**: Native & cross-platform iOS & Android mobile applications built for performance, security, and offline support.
+4. **Business Process Automation**: Workflow automation, API integrations, digital transformation, and administrative systems.
+
+## Software Products
+
+1. **Vidhai ERP (School Management System)**:
+   - Complete school management software designed for schools in Tamil Nadu.
+   - Covers student admissions, attendance, fee collection & receipts, examinations & report cards, transport management, staff records, and parent communication.
+   - Website: https://vidhaierp.pathmakerstech.in/
+
+2. **Insurance CRM (Insurance Support Platform)**:
+   - Dedicated platform for insurance brokers and agencies to manage policies, client portals, claims tracking, renewals, and analytics.
+
+3. **FeatherLMS (Learning Management System)**:
+   - Educational platform for hosting online courses, live interactive classes, student progress management, quizzes, payment gateways, and automated certificates.
+
+## Pricing & Access Models
+
+PathMakers Technologies offers 3 flexible pricing structures depending on the solution:
+
+1. **Custom Software Projects**:
+   - Scope-based custom project pricing tailored to specific business requirements, features, timelines, and hosting options.
+
+2. **Annual Subscription (Software Products like Vidhai ERP)**:
+   - Lower upfront cost with annual recurring access for selected modules. Includes ongoing support, cloud hosting, and software updates.
+
+3. **Lifetime Access (Software Products like Vidhai ERP)**:
+   - One-time purchase for permanent usage rights to the selected product configuration, providing long-term value for growing institutions.
+
+## Primary Page URLs
+
+- [Home](https://pathmakerstech.in/): Company overview, technology stack, and engineering approach.
+- [About Us](https://pathmakerstech.in/about): Founder story (Naresh Dharmaraj), mission, beliefs, and engineering principles.
+- [Solutions Hub](https://pathmakerstech.in/solutions): Detailed breakdown of custom software, web apps, mobile apps, and business automation.
+- [Products Hub](https://pathmakerstech.in/products): Overview of Vidhai ERP, Insurance CRM, and FeatherLMS.
+- [Vidhai ERP Product Page](https://pathmakerstech.in/products/vidhai-erp): Features, modules, and access models for Vidhai ERP.
+- [Let's Build / Contact](https://pathmakerstech.in/lets-build): Direct consultation, project inquiries, and custom pricing estimates.
+- [Privacy Policy](https://pathmakerstech.in/privacy): Privacy policy and data handling guidelines.
+- [Terms & Conditions](https://pathmakerstech.in/terms): Terms of service, software licensing, and usage conditions.
