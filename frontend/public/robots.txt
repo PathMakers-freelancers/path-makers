@@ -1,9 +1,30 @@
 User-agent: *
 Allow: /
 
+# AI Search & Answer Engine Crawlers (AEO / GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
 # Block non-public or internal paths
 Disallow: /api/
 Disallow: /*.json$
 
-# Sitemap
+# Sitemap & LLM Indexing
 Sitemap: https://pathmakerstech.in/sitemap.xml
+# LLMs Text: https://pathmakerstech.in/llms.txt
+

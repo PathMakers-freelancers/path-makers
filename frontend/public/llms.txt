@@ -1,0 +1,30 @@
+# PathMakers Technologies
+
+> PathMakers Technologies is a custom software development company based in Tamil Nadu, India. We build tailored web applications, mobile apps, business automation systems, and ready-to-use software products including Vidhai ERP.
+
+## Core Capabilities & Services
+
+- [Custom Software Development](https://pathmakerstech.in/solutions/custom-software): Tailored software architecture designed around unique business workflows.
+- [Web Applications](https://pathmakerstech.in/solutions/web-applications): Modern, scalable web applications built with React, Node, and cloud infrastructure.
+- [Mobile Apps](https://pathmakerstech.in/solutions/mobile-apps): Native and cross-platform iOS & Android mobile applications.
+- [Business Automation](https://pathmakerstech.in/solutions/business-automation): Workflow automation, API integrations, and digital transformation for operational efficiency.
+- [Vidhai ERP - School Management System](https://pathmakerstech.in/products/vidhai-erp): Comprehensive ERP software for educational institutions handling admissions, attendance, fees, exams, and communication.
+
+## Primary Pages & Documentation
+
+- [Home](https://pathmakerstech.in/): Company overview, technology stack, and engineering approach.
+- [About Us](https://pathmakerstech.in/about): Founder story (Naresh Dharmaraj), mission, beliefs, and engineering principles.
+- [Solutions Hub](https://pathmakerstech.in/solutions): Overview of custom software, web apps, mobile apps, and automation.
+- [Products Hub](https://pathmakerstech.in/products): Overview of ready-to-use software products.
+- [Let's Build](https://pathmakerstech.in/lets-build): Project consultation, estimation, and contact channel.
+- [Privacy Policy](https://pathmakerstech.in/privacy): Privacy policy and data protection practices.
+- [Terms & Conditions](https://pathmakerstech.in/terms): Terms of service, licensing, and usage conditions.
+
+## Company Details
+
+- **Company Name**: PathMakers Technologies
+- **Founder**: Naresh Dharmaraj
+- **Headquarters**: P.Velur, Namakkal District, Tamil Nadu, India
+- **Phone**: +91 7200754566
+- **Email**: noreply.pathmakers@gmail.com
+- **Website**: https://pathmakerstech.in

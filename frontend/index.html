@@ -44,7 +44,17 @@
     <meta name="twitter:description" content="PathMakers Technologies builds custom software, web applications, mobile apps, business automation and ERP solutions in Tamil Nadu." />
     <meta name="twitter:image" content="https://pathmakerstech.in/pmlogo.png" />
 
-    <!-- Site-wide WebSite + Organization JSON-LD (per-page data injected by useSEO hook) -->
+    <!-- Geographic / GEO Location Meta Tags -->
+    <meta name="geo.region" content="IN-TN" />
+    <meta name="geo.placename" content="Namakkal, Tamil Nadu, India" />
+    <meta name="geo.position" content="11.2189;78.1674" />
+    <meta name="ICBM" content="11.2189, 78.1674" />
+
+    <!-- AI / AEO Directives for SearchGPT, Perplexity, Gemini & Claude -->
+    <meta name="ai-search" content="index, follow" />
+    <meta name="chatgpt-bot" content="index, follow" />
+
+    <!-- Site-wide WebSite + Organization + SiteNavigation + FAQPage JSON-LD (per-page data injected by useSEO hook) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -120,6 +130,44 @@
               "position": 6,
               "name": "Privacy Policy",
               "url": "https://pathmakerstech.in/privacy"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://pathmakerstech.in/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is PathMakers Technologies?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PathMakers Technologies is a custom software development company in Tamil Nadu, India, specializing in web applications, mobile apps, business automation, and ready-to-use software solutions like Vidhai ERP."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What services does PathMakers Technologies offer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PathMakers Technologies offers Custom Software Development, Web Application Development, Mobile App Development (iOS & Android), Business Automation, and School ERP Solutions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is Vidhai ERP by PathMakers Technologies?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vidhai ERP is a complete school management software developed by PathMakers Technologies that manages student admissions, attendance, fee collection, staff management, examinations, and reporting."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where is PathMakers Technologies located?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PathMakers Technologies is based in P.Velur, Namakkal District, Tamil Nadu, India."
+              }
             }
           ]
         }
